@@ -46,29 +46,29 @@ const Elatests2Files = {
     'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
 };
-const MpreviousvroomFiles = {
+const MpreviouswroomFiles = {
     'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/VROOM/core/boot_app0.bin',
     'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_2_20231018_old_hardware.bin',
 };
-const MlatestvroomFiles = {
-    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
-    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
-    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
-    'firmware': 'resources/VROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_old_hardware.bin',
+const MlatestwroomFiles = {
+    'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/WROOM/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/WROOM/core/boot_app0.bin',
+    'firmware': 'resources/WROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_old_hardware.bin',
 };
-const EpreviousvroomFiles = {
-    'bootloader': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
-    'partitions': 'resources/VROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
-    'boot_app0': 'resources/VROOM/evilportal/latest/boot_app0.bin',
-    'firmware': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bin',
+const EpreviouswroomFiles = {
+    'bootloader': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/WROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/WROOM/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bin',
 };
-const ElatestvroomFiles = {
-    'bootloader': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
-    'partitions': 'resources/VROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
-    'boot_app0': 'resources/VROOM/evilportal/latest/boot_app0.bin',
-    'firmware': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bin',
+const ElatestwroomFiles = {
+    'bootloader': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/WROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/WROOM/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bin',
 };
 const otherModelFiles = {
     'bootloader': 'resources/esp32_marauder.ino.bootloader.bin',
@@ -115,6 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedVarient = variantSelect.value;
         // Handle varient change if needed
     });
+    modelSelect.addEventListener("change", checkDropdowns);
+    versionSelect.addEventListener("change", checkDropdowns);
+    variantSelect.addEventListener("change", checkDropdowns);
+
+    function checkDropdowns() {
+        const isAnyDropdownNull = [modelSelect.value, versionSelect.value, variantSelect.value].includes("NULL");
+
+        if (isAnyDropdownNull) {
+            butProgram.disabled = true;
+        } else {
+            butProgram.disabled = false;
+        }
+    }
+    checkDropdowns();
     loadAllSettings();
     updateTheme();
     logMsg("ESP Web Flasher loaded.");
@@ -122,6 +136,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function logMsg(text) {
     log.innerHTML += text + "<br>";
+
+    if (log.textContent.split("\n").length > maxLogLength + 1) {
+        let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
+        log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
+    }
+
+    if (autoscroll.checked) {
+        log.scrollTop = log.scrollHeight;
+    }
+}
+
+function annMsg(text) {
+    log.innerHTML += `<font color='#FF8200'>` + text + `<br></font>`;
+
+    if (log.textContent.split("\n").length > maxLogLength + 1) {
+        let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
+        log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
+    }
+
+    if (autoscroll.checked) {
+        log.scrollTop = log.scrollHeight;
+    }
+}
+function compMsg(text) {
+    log.innerHTML += `<font color='#2ED832'>` + text + `<br></font>`;
 
     if (log.textContent.split("\n").length > maxLogLength + 1) {
         let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
@@ -293,24 +332,28 @@ async function clickProgram() {
             reader.readAsArrayBuffer(inputFile);
         });
     };
-
     const selectedModel = modelSelect.value;
     const selectedVersion = versionSelect.value;
     const selectedVariant = variantSelect.value;
 
-    const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
+    function checkDropdowns() {
+        const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
 
-    if (isAnyDropdownNull) {
-        butProgram.disabled = true;
-        return;
+        if (isAnyDropdownNull) {
+            butProgram.disabled = true;
+        } else {
+            butProgram.disabled = false;
+        }
     }
+
+    checkDropdowns();
 
     let selectedFiles;
 
     if (selectedModel === "S2") {
         selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? Mlatests2Files : Elatests2Files) : (selectedVariant === "Marauder" ? Mpreviouss2Files : Epreviouss2Files);
-    } else if (selectedModel === "VROOM") {
-        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? MlatestvroomFiles : ElatestvroomFiles) : (selectedVariant === "Marauder" ? MpreviousvroomFiles : EpreviousvroomFiles);
+    } else if (selectedModel === "WROOM") {
+        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? MlatestwroomFiles : ElatestwroomFiles) : (selectedVariant === "Marauder" ? MpreviouswroomFiles : EpreviouswroomFiles);
     }
 
     butErase.disabled = true;
@@ -323,7 +366,7 @@ async function clickProgram() {
 
         try {
             let offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-
+            annMsg(` ---> Flashing ${fileType}.`);
             const progressBar = document.getElementById(fileType + 'Progress');
             progressBar.classList.remove("hidden");
 
@@ -337,7 +380,7 @@ async function clickProgram() {
                 },
                 offset
             );
-            
+            annMsg(` ---> Finished flashing ${fileType}.`);
             await sleep(100);
         } catch (e) {
             errorMsg(e);
@@ -350,6 +393,7 @@ async function clickProgram() {
 
     butErase.disabled = false;
     butProgram.disabled = false;
+    compMsg(" ---> FLASHING PROCESS COMPLETED!");
     logMsg("To run the new firmware, please reset your device.");
 }
 
@@ -378,7 +422,6 @@ function toggleUIToolbar(show) {
         appDiv.classList.remove("connected");
     }
     butErase.disabled = !show;
-    butProgram.disabled = !show;
 }
 
 function toggleUIConnected(connected) {

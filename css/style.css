@@ -3,13 +3,14 @@
  */
 
 .header {
+  margin: auto;
   box-sizing: border-box;
   font-size: 16px;
   height: 95px;
   line-height: 40px;
   padding: 20px 70px 0px 70px; /* TRouBLe */
   position: fixed;
-  width: 100%;
+  width: 99vw;
   z-index: 1000;
   margin: 0;
   background: solid;
@@ -46,13 +47,12 @@ button,
 }
 
 body {
+  margin: auto;
   font-family: proxima-nova, sans-serif;
   font-style: normal;
   font-weight: 400;
-  margin: 0;
-  width: 100vw;
+  width: 99vw;
   height: 98vh;
-  margin: 0;
   border: 1px solid #FF8200;
 }
 
@@ -114,11 +114,11 @@ div.clear {
 }
 
 #app.connected #commands {
-  height: 150px;
+  height: 100px;
 }
 
 #app.connected #log {
-  height: calc(100vh - 530px);
+  height: calc(100vh - 430px);
 }
 
 #app #commands {
@@ -126,7 +126,7 @@ div.clear {
 }
 
 #app #log {
-  height: calc(100vh - 500px);
+  height: calc(100vh - 400px);
 }
 
 #commands,
@@ -192,22 +192,6 @@ div.clear {
   position: absolute;
   bottom: 11px;
 }
-
-#popup-window {
-  position: fixed;
-  width: 300px;
-  height: 200px;
-  background: white;
-  border: 1px solid black;
-  padding: 10px;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  display: none;
-} 
 
 #templates {
   display: none;
