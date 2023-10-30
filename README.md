@@ -1,4 +1,5 @@
-# ESP Web Flasher
+# Flipper Zero ESP WebFlasher
+## Forked off of Adafruits ESP WebFlasher
 
 JavaScript package to install firmware on ESP devices via the browser using WebSerial.
 
