@@ -49,6 +49,9 @@ body {
   font-style: normal;
   font-weight: 400;
   margin: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 p {
@@ -90,9 +93,10 @@ div.clear {
 }
 
 .notSupported {
-  padding: 1em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  background-color: #f70;
+  color: #fff;
 }
 
 .subheader {
@@ -108,7 +112,7 @@ div.clear {
 }
 
 #app.connected #commands {
-  height: 200px;
+  height: 150px;
 }
 
 #app.connected #log {
@@ -120,7 +124,7 @@ div.clear {
 }
 
 #app #log {
-  height: calc(100vh - 330px);
+  height: calc(100vh - 500px);
 }
 
 #commands,
@@ -136,7 +140,7 @@ div.clear {
 }
 
 #log {
-  max-width: 100%;
+  max-width: 96%;
   font-family: pt-mono, monospace;
   font-style: normal;
   font-weight: 400;

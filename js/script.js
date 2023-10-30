@@ -317,6 +317,13 @@ async function clickProgram() {
     const selectedVersion = versionSelect.value;
     const selectedVariant = variantSelect.value;
 
+    const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
+
+    if (isAnyDropdownNull) {
+        butProgram.disabled = true;
+        return;
+    }
+
     let selectedFiles;
 
     if (selectedModel === "S2") {
