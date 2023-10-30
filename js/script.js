@@ -92,10 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     butClear.addEventListener("click", clickClear);
     butErase.addEventListener("click", clickErase);
     butProgram.addEventListener("click", clickProgram);
-    firmware[i].addEventListener("change", checkFirmware);
     autoscroll.addEventListener("click", clickAutoscroll);
-    baudRate.addEventListener("change", changeBaudRate);
-    darkMode.addEventListener("click", clickDarkMode);
+    darkMode.addEventListener("change", clickDarkMode);
     window.addEventListener("error", function (event) {
         console.log("Got an uncaught error: ", event.error);
     });
@@ -117,21 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedVarient = variantSelect.value;
         // Handle varient change if needed
     });
-
-    initBaudRate();
     loadAllSettings();
     updateTheme();
     logMsg("ESP Web Flasher loaded.");
 });
-
-function initBaudRate() {
-    for (let rate of baudRates) {
-        var option = document.createElement("option");
-        option.text = rate + " Baud";
-        option.value = rate;
-        baudRate.add(option);
-    }
-}
 
 function logMsg(text) {
     log.innerHTML += text + "<br>";
@@ -202,17 +189,11 @@ function errorMsg(text) {
 }
 
 function updateTheme() {
-    document
-        .querySelectorAll("link[rel=stylesheet].alternate")
-        .forEach((styleSheet) => {
-            enableStyleSheet(styleSheet, false);
-        });
-
-    if (darkMode.checked) {
-        enableStyleSheet(darkSS, true);
-    } else {
-        enableStyleSheet(lightSS, true);
-    }
+    const selectedStyleSheet = darkMode.checked ? darkSS : lightSS;
+    document.querySelectorAll("link[rel=stylesheet].alternate").forEach((styleSheet) => {
+        enableStyleSheet(styleSheet, styleSheet === selectedStyleSheet);
+    });
+    saveSetting("darkmode", darkMode.checked);
 }
 
 function enableStyleSheet(node, enabled) {
@@ -412,7 +393,6 @@ function toggleUIConnected(connected) {
 
 function loadAllSettings() {
     autoscroll.checked = loadSetting("autoscroll", true);
-    baudRate.value = loadSetting("baudrate", 115200);
     darkMode.checked = loadSetting("darkmode", false);
 }
 

@@ -5,13 +5,14 @@
 .header {
   box-sizing: border-box;
   font-size: 16px;
-  height: 85px;
+  height: 95px;
   line-height: 40px;
   padding: 20px 70px 0px 70px; /* TRouBLe */
   position: fixed;
   width: 100%;
   z-index: 1000;
   margin: 0;
+  background: solid;
   border-bottom: 5px solid #FF8200;
 }
 
@@ -50,8 +51,9 @@ body {
   font-weight: 400;
   margin: 0;
   width: 100vw;
-  height: 100vh;
+  height: 98vh;
   margin: 0;
+  border: 1px solid #FF8200;
 }
 
 p {
@@ -140,7 +142,8 @@ div.clear {
 }
 
 #log {
-  max-width: 96%;
+  margin: auto;
+  width: 93vw;
   font-family: pt-mono, monospace;
   font-style: normal;
   font-weight: 400;
@@ -149,7 +152,7 @@ div.clear {
   overflow-x: auto;
   transition: color 0.1s linear;
   padding: 0 50px;
-  border: 20px solid #000;
+  border: px solid #000;
   -ms-overflow-style: none;
   scrollbar-width: none;
   background-color: #000;
@@ -189,6 +192,22 @@ div.clear {
   position: absolute;
   bottom: 11px;
 }
+
+#popup-window {
+  position: fixed;
+  width: 300px;
+  height: 200px;
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+} 
 
 #templates {
   display: none;
