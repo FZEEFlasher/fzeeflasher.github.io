@@ -126,7 +126,11 @@ div.clear {
 }
 
 #app #log {
-  height: calc(100vh - 400px);
+  height: calc(100vh - 330px);
+}
+
+i .icons {
+  display: inline;
 }
 
 #commands,
