@@ -20,30 +20,55 @@ const firmware = document.querySelectorAll(".upload .firmware input");
 const progress = document.querySelectorAll(".upload .progress-bar");
 const modelSelect = document.getElementById("modelSelect");
 const versionSelect = document.getElementById("versionSelect");
+const variantSelect = document.getElementById("variantSelect");
 const offsets = [0x1000, 0x8000, 0xE000, 0x10000];
-const previouss2Files = {
+const Mpreviouss2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+    'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_2_20231018_flipper_sd_serial.bin',
 };
-const latests2Files = {
+const Mlatests2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
     'firmware': 'resources/S2/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
 };
-const previousvroomFiles = {
-    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
-    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
-    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
-    'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+const Epreviouss2Files = {
+    'bootloader': 'resources/S2/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
 };
-const latestvroomFiles = {
+const Elatests2Files = {
+    'bootloader': 'resources/S2/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
+};
+const MpreviousvroomFiles = {
     'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/VROOM/core/boot_app0.bin',
-    'firmware': 'resources/VROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+    'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_2_20231018_old_hardware.bin',
+};
+const MlatestvroomFiles = {
+    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
+    'firmware': 'resources/VROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_old_hardware.bin',
+};
+const EpreviousvroomFiles = {
+    'bootloader': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/VROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/VROOM/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bin',
+};
+const ElatestvroomFiles = {
+    'bootloader': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/VROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/VROOM/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/VROOM/evilportal/latest/EvilPortal.ino.bin',
 };
 const otherModelFiles = {
     'bootloader': 'resources/esp32_marauder.ino.bootloader.bin',
@@ -86,6 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
     versionSelect.addEventListener("change", () => {
         const selectedVersion = versionSelect.value;
         // Handle version change if needed
+    });
+
+    variantSelect.addEventListener("change", () => {
+        const selectedVarient = variantSelect.value;
+        // Handle varient change if needed
     });
 
     initBaudRate();
@@ -267,72 +297,72 @@ async function clickErase() {
     }
 }
 async function clickProgram() {
-  const readUploadedFileAsArrayBuffer = (inputFile) => {
-    const reader = new FileReader();
+    const readUploadedFileAsArrayBuffer = (inputFile) => {
+        const reader = new FileReader();
 
-    return new Promise((resolve, reject) => {
-      reader.onerror = () => {
-        reader.abort();
-        reject(new DOMException("Problem parsing input file."));
-      };
+        return new Promise((resolve, reject) => {
+            reader.onerror = () => {
+                reader.abort();
+                reject(new DOMException("Problem parsing input file."));
+            };
 
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.readAsArrayBuffer(inputFile);
-    });
-  };
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.readAsArrayBuffer(inputFile);
+        });
+    };
 
-  const selectedModel = modelSelect.value;
-  const selectedVersion = versionSelect.value;
-  let selectedFiles;
+    const selectedModel = modelSelect.value;
+    const selectedVersion = versionSelect.value;
+    const selectedVariant = variantSelect.value;
 
-  if (selectedModel === "S2") {
-    selectedFiles = selectedVersion === "latest" ? latests2Files : previouss2Files;
-  } else if (selectedModel === "VROOM") {
-    selectedFiles = selectedVersion === "latest" ? latestvroomFiles : previousvroomFiles;
-  }
+    let selectedFiles;
 
-  butErase.disabled = true;
-  butProgram.disabled = true;
-
-  const fileTypes = ['bootloader', 'partitions', 'boot_app0', 'firmware'];
-
-  for (let fileType of fileTypes) {
-    let fileResource = selectedFiles[fileType];
-
-    try {
-      let offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-
-      const progressBar = document.getElementById(fileType + 'Progress');
-      progressBar.classList.remove("hidden");
-
-      let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
-      let contents = await readUploadedFileAsArrayBuffer(binfile);
-
-      await espStub.flashData(
-        contents,
-        (bytesWritten, totalBytes) => {
-          progressBar.style.width = Math.floor((bytesWritten / totalBytes) * 100) + "%";
-        },
-        offset
-      );
-      for (let fileType of fileTypes) {
-        const progressBar = document.getElementById(fileType + 'Progress');
-        progressBar.classList.add("hidden");
-        progressBar.style.width = "0";
-      }
-      await sleep(100);
-    } catch (e) {
-      errorMsg(e);
+    if (selectedModel === "S2") {
+        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? Mlatests2Files : Elatests2Files) : (selectedVariant === "Marauder" ? Mpreviouss2Files : Epreviouss2Files);
+    } else if (selectedModel === "VROOM") {
+        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? MlatestvroomFiles : ElatestvroomFiles) : (selectedVariant === "Marauder" ? MpreviousvroomFiles : EpreviousvroomFiles);
     }
-  }
-  const progressBar = document.getElementById(fileType + 'Progress');
-  progressBar.classList.add("hidden");
-  progressBar.style.width = "0";
-  butErase.disabled = false;
-  butProgram.disabled = false;
-  logMsg("To run the new firmware, please reset your device.");
+
+    butErase.disabled = true;
+    butProgram.disabled = true;
+
+    const fileTypes = ['bootloader', 'partitions', 'boot_app0', 'firmware'];
+
+    for (let fileType of fileTypes) {
+        let fileResource = selectedFiles[fileType];
+
+        try {
+            let offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+
+            const progressBar = document.getElementById(fileType + 'Progress');
+            progressBar.classList.remove("hidden");
+
+            let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
+            let contents = await readUploadedFileAsArrayBuffer(binfile);
+
+            await espStub.flashData(
+                contents,
+                (bytesWritten, totalBytes) => {
+                    progressBar.style.width = Math.floor((bytesWritten / totalBytes) * 100) + "%";
+                },
+                offset
+            );
+            
+            await sleep(100);
+        } catch (e) {
+            errorMsg(e);
+        } finally {
+            const progressBar = document.getElementById(fileType + 'Progress');
+            progressBar.classList.add("hidden");
+            progressBar.style.width = "0";
+        }
+    }
+
+    butErase.disabled = false;
+    butProgram.disabled = false;
+    logMsg("To run the new firmware, please reset your device.");
 }
 
 async function clickClear() {
