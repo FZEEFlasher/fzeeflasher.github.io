@@ -18,18 +18,32 @@ const lightSS = document.getElementById("light");
 const darkMode = document.getElementById("darkmode");
 const firmware = document.querySelectorAll(".upload .firmware input");
 const progress = document.querySelectorAll(".upload .progress-bar");
+const modelSelect = document.getElementById("modelSelect");
+const versionSelect = document.getElementById("versionSelect");
 const offsets = [0x1000, 0x8000, 0xE000, 0x10000];
-const s2Files = {
-    'bootloader': 'resources/S2/13.3/esp32_marauder.ino.bootloader.bin',
-    'partitions': 'resources/S2/13.3/esp32_marauder.ino.partitions.bin',
-    'boot_app0': 'resources/S2/13.3/boot_app0.bin',
-    'firmware': 'resources/S2/13.3/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+const previouss2Files = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
 };
-const vroomFiles = {
-    'bootloader': 'resources/esp32_marauder.ino.bootloader.bin',
-    'partitions': 'resources/esp32_marauder.ino.partitions.bin',
-    'boot_app0': 'resources/boot_app0.bin',
-    'firmware': 'resources/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+const latests2Files = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+};
+const previousvroomFiles = {
+    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
+    'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+};
+const latestvroomFiles = {
+    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
+    'firmware': 'resources/VROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
 };
 const otherModelFiles = {
     'bootloader': 'resources/esp32_marauder.ino.bootloader.bin',
@@ -37,7 +51,6 @@ const otherModelFiles = {
     'boot_app0': 'resources/boot_app0.bin',
     'firmware': 'resources/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
 };
-
 const appDiv = document.getElementById("app");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     butErase.addEventListener("click", clickErase);
     butProgram.addEventListener("click", clickProgram);
     firmware[i].addEventListener("change", checkFirmware);
-    offsets[i].addEventListener("change", checkProgrammable);
     autoscroll.addEventListener("click", clickAutoscroll);
     baudRate.addEventListener("change", changeBaudRate);
     darkMode.addEventListener("click", clickDarkMode);
@@ -66,6 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const notSupported = document.getElementById("notSupported");
         notSupported.classList.add("hidden");
     }
+    modelSelect.addEventListener("change", () => {
+        const selectedModel = modelSelect.value;
+        // Handle model change if needed
+    });
+
+    versionSelect.addEventListener("change", () => {
+        const selectedVersion = versionSelect.value;
+        // Handle version change if needed
+    });
 
     initBaudRate();
     loadAllSettings();
@@ -85,7 +106,6 @@ function initBaudRate() {
 function logMsg(text) {
     log.innerHTML += text + "<br>";
 
-    // Remove old log content
     if (log.textContent.split("\n").length > maxLogLength + 1) {
         let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
         log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
@@ -263,19 +283,18 @@ async function clickProgram() {
     });
   };
 
+  const selectedModel = modelSelect.value;
+  const selectedVersion = versionSelect.value;
+  let selectedFiles;
+
+  if (selectedModel === "S2") {
+    selectedFiles = selectedVersion === "latest" ? latests2Files : previouss2Files;
+  } else if (selectedModel === "VROOM") {
+    selectedFiles = selectedVersion === "latest" ? latestvroomFiles : previousvroomFiles;
+  }
+
   butErase.disabled = true;
   butProgram.disabled = true;
-
-  const modelSelect = document.getElementById("modelSelect");
-  const selectedModel = modelSelect.value;
-
-  const modelFiles = {
-    'S2': s2Files,
-    'VROOM': vroomFiles,
-    // Add more models and their associated files as needed
-  };
-
-  const selectedFiles = modelFiles[selectedModel];
 
   const fileTypes = ['bootloader', 'partitions', 'boot_app0', 'firmware'];
 
@@ -298,26 +317,23 @@ async function clickProgram() {
         },
         offset
       );
+      for (let fileType of fileTypes) {
+        const progressBar = document.getElementById(fileType + 'Progress');
+        progressBar.classList.add("hidden");
+        progressBar.style.width = "0";
+      }
       await sleep(100);
     } catch (e) {
       errorMsg(e);
     }
   }
-
-  for (let fileType of fileTypes) {
-    const progressBar = document.getElementById(fileType + 'Progress');
-    progressBar.classList.add("hidden");
-    progressBar.style.width = "0";
-  }
-
+  const progressBar = document.getElementById(fileType + 'Progress');
+  progressBar.classList.add("hidden");
+  progressBar.style.width = "0";
   butErase.disabled = false;
   butProgram.disabled = false;
   logMsg("To run the new firmware, please reset your device.");
 }
-
-
-
-
 
 async function clickClear() {
     reset();

@@ -83,10 +83,17 @@
               <div class="model-select">
                 <label for="modelSelect">Select Model:</label>
                 <select id="modelSelect">
+                  <option value="">--  SELECT BOARD   --</option>
+                  <option value="S2">Flipper Dev Board</option>
                   <option value="S2">ESP32-S2</option>
                   <option value="VROOM">ESP-VROOM</option>
                   <!-- Add more options for other models if needed -->
                 </select>
+                <select id="versionSelect">
+                 <option value="">--- Version ---</option>
+                 <option value="latest">Latest</option>
+                 <option value="previous">Previous</option>
+              </select>
               </div>
             </label>
 <div id="bootloaderProgress" class="progress-bar hidden">
