@@ -419,6 +419,22 @@ i .icons {
   z-index: 9999;
 }
 
-.darkmode-label {
+div.right2 {
+  float: right;
   position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 60vw;
+}
+.autoscroll-label, .darkmode-label {
+  margin-top: 15px;
+}
+.clearbutton {
+  margin-top: 22px !important;
+}
+.credits {
+  position: absolute;
+  text-align: center;
+  bottom: 50px;
+  left: calc(50vw - 60px);
 }
