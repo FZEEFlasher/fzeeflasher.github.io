@@ -23,7 +23,7 @@
 }
 
 .header button {
-  border: solid 2px #fff;
+  border: solid 2px #FF8200;
   background-color: #000;
   color: #fff;
   margin-left: 20px;
@@ -35,7 +35,26 @@
   color: #000;
 }
 
-button,
+button {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #FF8200;
+  text-transform: uppercase;
+  padding: 3px 20px;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background: #252525;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+  margin: 3px 0;
+}
+
+button:active {
+  box-shadow: none;
+  background: #252525;
+  transform: translate(3px, 3px);
+}
+
 .firmware {
   height: 25px;
   font-size: 16px;
