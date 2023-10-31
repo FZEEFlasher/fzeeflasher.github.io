@@ -418,19 +418,35 @@ i .icons {
   width: calc(100% - 100px);
   z-index: 9999;
 }
+div.right3 {
+  float: left;
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: 0vw;
+}
 
 div.right2 {
   float: right;
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 60vw;
+  right: 70vw;
 }
+
 .autoscroll-label, .darkmode-label {
   margin-top: 15px;
+  width: ;
+}
+.darkmode-label {
+  width: ;
 }
 .clearbutton {
+  position: absolute;
+  text-align: center;
   margin-top: 22px !important;
+  left: 88vw !important;
+
 }
 .credits {
   position: absolute;
