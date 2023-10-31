@@ -103,10 +103,8 @@ div.clear {
 }
 
 .subheader {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 20px;
-  line-height: 20px;
+  height: 23px;
+  line-height: 23px;
   padding-left: 70px;
   padding-right: 70px;
 }
