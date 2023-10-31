@@ -14,11 +14,6 @@
   z-index: 1000;
   margin: 0;
   background: solid;
-<<<<<<< Updated upstream
-  border-bottom: 2px solid #FF8200;
-=======
-  border-bottom: 1px solid #FF8200;
->>>>>>> Stashed changes
 }
 
 .header h1 {
@@ -80,6 +75,7 @@ div.left {
 
 div.right {
   float: right;
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -115,6 +111,12 @@ div.clear {
 .subheader .title {
   font-size: 36px;
   font-weight: 500;
+}
+
+img.pagename {
+    position: relative;
+    top: -20px; /* This will move it 20px up */
+    left: 20px; /* This will move it 20px to the right */
 }
 
 #app.connected #commands {
@@ -226,6 +228,7 @@ i .icons {
   cursor: pointer;
   border: 1px solid #900;
   border-radius: 15px;
+  font-size: 14px;
   transition: border 0.3s ease-in 0s;
 }
 
