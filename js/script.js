@@ -20,54 +20,77 @@ const modelSelect = document.getElementById("modelSelect");
 const versionSelect = document.getElementById("versionSelect");
 const variantSelect = document.getElementById("variantSelect");
 const offsets = [0x1000, 0x8000, 0xE000, 0x10000];
+// Previous Marauder for ESP32-S2
 const Mpreviouss2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
     'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_2_20231018_flipper_sd_serial.bin',
 };
+// Latest Marauder for ESP32-S2
 const Mlatests2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
     'firmware': 'resources/S2/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
 };
+// Previous DualBoot for ESP32-S2
+const DBpreviouss2Files = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2/dualboot/previous/esp32_marauder_v0_13_2_20231018_flipper_sd_serial.bin',
+};
+// Latest DualBoot for ESP32-S2
+const DBlatests2Files = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2/dualboot/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+};
+// Previous EvilPortal for ESP32-S2
 const Epreviouss2Files = {
     'bootloader': 'resources/S2/evilportal/latest/EvilPortal.ino.bootloader.bin',
     'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
     'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
 };
+// Latest EvilPortal for ESP32-S2
 const Elatests2Files = {
     'bootloader': 'resources/S2/evilportal/latest/EvilPortal.ino.bootloader.bin',
     'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
     'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
 };
+// Previous Marauder for ESP32-WROOM
 const MpreviouswroomFiles = {
     'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/VROOM/core/boot_app0.bin',
     'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_2_20231018_old_hardware.bin',
 };
+// Latest Marauder for ESP32-WROOM
 const MlatestwroomFiles = {
     'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/WROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/WROOM/core/boot_app0.bin',
     'firmware': 'resources/WROOM/marauder/latest/esp32_marauder_v0_13_3_20231026_old_hardware.bin',
 };
+// Previous EvilPortal for ESP32-WROOM
 const EpreviouswroomFiles = {
     'bootloader': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
     'partitions': 'resources/WROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
     'boot_app0': 'resources/WROOM/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bin',
 };
+// Latest EvilPortal for ESP32-WROOM
 const ElatestwroomFiles = {
     'bootloader': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bootloader.bin',
     'partitions': 'resources/WROOM/evilportal/latest/EvilPortal.ino.partitions.bin',
     'boot_app0': 'resources/WROOM/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/WROOM/evilportal/latest/EvilPortal.ino.bin',
 };
+// Example unused syntax
 const otherModelFiles = {
     'bootloader': 'resources/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/esp32_marauder.ino.partitions.bin',
@@ -361,9 +384,13 @@ async function clickProgram() {
     let selectedFiles;
 
     if (selectedModel === "S2") {
-        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? Mlatests2Files : Elatests2Files) : (selectedVariant === "Marauder" ? Mpreviouss2Files : Epreviouss2Files);
+        selectedFiles = selectedVersion === "latest" ? 
+            (selectedVariant === "Marauder" ? Mlatests2Files : (selectedVariant === "DB" ? DBlatests2Files : Elatests2Files)) 
+            : (selectedVariant === "Marauder" ? Mpreviouss2Files : (selectedVariant === "DB" ? DBpreviouss2Files : Epreviouss2Files));
     } else if (selectedModel === "WROOM") {
-        selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? MlatestwroomFiles : ElatestwroomFiles) : (selectedVariant === "Marauder" ? MpreviouswroomFiles : EpreviouswroomFiles);
+        selectedFiles = selectedVersion === "latest" ? 
+            (selectedVariant === "Marauder" ? MlatestwroomFiles : (selectedVariant === "DB" ? DBlatestwroomFiles : ElatestwroomFiles)) 
+            : (selectedVariant === "Marauder" ? MpreviouswroomFiles : (selectedVariant === "DB" ? DBpreviouswroomFiles : EpreviouswroomFiles));
     }
     const flashMessages = document.getElementById("flashMessages");
     flashMessages.style.display = "block";
