@@ -7,8 +7,11 @@ body {
   background-color: #fff;
   color: #000;
 }
+select {
+  color: #000;
+}
 
-input, select, button {
+input, button {
   background-color: #fff;
   color: #000;
 }
@@ -39,14 +42,12 @@ input, select, button {
 }
 
 .firmware {
-  border-color: #63338f;
-  color: #63338f;
+  color: #000;
 }
 
 .firmware:focus,
 .firmware:hover {
-  background-color: #63338f;
-  color: #fff;
+  color: #000;
 }
 
 .firmware:disabled {
