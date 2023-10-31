@@ -51,14 +51,12 @@ input, select, button {
 }
 
 .firmware {
-  border-color: #fff;
   color: #fff;
 }
 
 .firmware:focus,
 .firmware:hover {
-  background-color: #fff;
-  color: #333;
+  color: #fff;
 }
 
 .firmware:disabled {

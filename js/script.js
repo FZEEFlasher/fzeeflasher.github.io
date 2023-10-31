@@ -16,8 +16,6 @@ const autoscroll = document.getElementById("autoscroll");
 const darkSS = document.getElementById("dark");
 const lightSS = document.getElementById("light");
 const darkMode = document.getElementById("darkmode");
-const firmware = document.querySelectorAll(".upload .firmware input");
-const progress = document.querySelectorAll(".upload .progress-bar");
 const modelSelect = document.getElementById("modelSelect");
 const versionSelect = document.getElementById("versionSelect");
 const variantSelect = document.getElementById("variantSelect");
@@ -161,6 +159,18 @@ function annMsg(text) {
 }
 function compMsg(text) {
     log.innerHTML += `<font color='#2ED832'>` + text + `<br></font>`;
+
+    if (log.textContent.split("\n").length > maxLogLength + 1) {
+        let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
+        log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
+    }
+
+    if (autoscroll.checked) {
+        log.scrollTop = log.scrollHeight;
+    }
+}
+function initMsg(text) {
+    log.innerHTML += `<font color='#F72408'>` + text + `<br></font>`;
 
     if (log.textContent.split("\n").length > maxLogLength + 1) {
         let logLines = log.innerHTML.replace(/(\n)/gm, "").split("<br>");
@@ -355,46 +365,57 @@ async function clickProgram() {
     } else if (selectedModel === "WROOM") {
         selectedFiles = selectedVersion === "latest" ? (selectedVariant === "Marauder" ? MlatestwroomFiles : ElatestwroomFiles) : (selectedVariant === "Marauder" ? MpreviouswroomFiles : EpreviouswroomFiles);
     }
+    const flashMessages = document.getElementById("flashMessages");
+    flashMessages.style.display = "block";
 
     butErase.disabled = true;
     butProgram.disabled = true;
 
     const fileTypes = ['bootloader', 'partitions', 'boot_app0', 'firmware'];
+    initMsg(` `);
+    initMsg(` !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! `);
+    initMsg(` !!!&nbsp;&nbsp; FLASHING STARTED! DO NOT UNPLUG &nbsp;!!! `);
+    initMsg(` !!!&nbsp;&nbsp;&nbsp;&nbsp; UNTIL FLASHING IS COMPLETE!! &nbsp;&nbsp;!!! `);
+    initMsg(` !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! `);
+    initMsg(` `);
+    const flashingMessages = document.getElementById("flashMessages");
+    flashingMessages.innerHTML = "";
 
     for (let fileType of fileTypes) {
         let fileResource = selectedFiles[fileType];
 
         try {
             let offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            const message = `<b><center><u>DO NOT TURN OFF OR UNPLUG YOUR BOARD!!</b></u> &nbsp;&nbsp;Flashing ${ucWords(fileType)}...</center>`;
+            flashingMessages.innerHTML += `<div>${message}</div>`;
             annMsg(` ---> Flashing ${fileType}.`);
-            const progressBar = document.getElementById(fileType + 'Progress');
-            progressBar.classList.remove("hidden");
-
             let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
             let contents = await readUploadedFileAsArrayBuffer(binfile);
 
             await espStub.flashData(
                 contents,
-                (bytesWritten, totalBytes) => {
-                    progressBar.style.width = Math.floor((bytesWritten / totalBytes) * 100) + "%";
+                () => {
+                    "100%";
                 },
                 offset
             );
             annMsg(` ---> Finished flashing ${fileType}.`);
+            annMsg(` `);
+            flashingMessages.lastElementChild.remove();
+
             await sleep(100);
         } catch (e) {
             errorMsg(e);
-        } finally {
-            const progressBar = document.getElementById(fileType + 'Progress');
-            progressBar.classList.add("hidden");
-            progressBar.style.width = "0";
         }
     }
 
+    // Re-enable the erase and program buttons
     butErase.disabled = false;
     butProgram.disabled = false;
+    flashMessages.style.display = "none";
     compMsg(" ---> FLASHING PROCESS COMPLETED!");
-    logMsg("To run the new firmware, please reset your device.");
+    compMsg(" ");
+    logMsg("Restart the board or disconnect to use the device.");
 }
 
 async function clickClear() {
@@ -412,10 +433,6 @@ function convertJSON(chunk) {
 
 function toggleUIToolbar(show) {
     isConnected = show;
-    for (let i = 0; i < 1; i++) {
-        progress[i].classList.add("hidden");
-        progress[i].querySelector("div").style.width = "0";
-    }
     if (show) {
         appDiv.classList.add("connected");
     } else {
@@ -436,7 +453,7 @@ function toggleUIConnected(connected) {
 
 function loadAllSettings() {
     autoscroll.checked = loadSetting("autoscroll", true);
-    darkMode.checked = loadSetting("darkmode", false);
+    darkMode.checked = loadSetting("darkmode", true);
 }
 
 function loadSetting(setting, defaultValue) {
