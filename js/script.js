@@ -64,10 +64,10 @@ const Elatests2Files = {
 };
 // Previous Marauder for ESP32-WROOM
 const MpreviouswroomFiles = {
-    'bootloader': 'resources/VROOM/core/esp32_marauder.ino.bootloader.bin',
-    'partitions': 'resources/VROOM/core/esp32_marauder.ino.partitions.bin',
-    'boot_app0': 'resources/VROOM/core/boot_app0.bin',
-    'firmware': 'resources/VROOM/marauder/previous/esp32_marauder_v0_13_2_20231018_old_hardware.bin',
+    'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/WROOM/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/WROOM/core/boot_app0.bin',
+    'firmware': 'resources/WROOM/marauder/previous/esp32_marauder_v0_13_2_20231018_old_hardware.bin',
 };
 // Latest Marauder for ESP32-WROOM
 const MlatestwroomFiles = {
