@@ -47,6 +47,7 @@ button,
 
 body {
   margin: auto;
+  overflow: hidden;
   font-family: proxima-nova, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -102,8 +103,10 @@ div.clear {
 }
 
 .subheader {
-  height: 100px;
-  line-height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 20px;
+  line-height: 20px;
   padding-left: 70px;
   padding-right: 70px;
 }
@@ -124,7 +127,7 @@ img.pagename {
 }
 
 #app.connected #log {
-  height: calc(100vh - 430px);
+  height: calc(100vh - 510px);
 }
 
 #app #commands {
@@ -132,7 +135,7 @@ img.pagename {
 }
 
 #app #log {
-  height: calc(100vh - 330px);
+  height: calc(100vh - 410px);
 }
 
 i .icons {
@@ -171,6 +174,13 @@ i .icons {
 
 #log::-webkit-scrollbar {
   display: none;
+}
+#app.connected::-webkit-scrollbar {
+  display: none;
+}
+
+#commands.connected {
+  overflow: hidden;
 }
 
 .footer {
@@ -409,4 +419,8 @@ i .icons {
   font-size: 14px;
   width: calc(100% - 100px);
   z-index: 9999;
+}
+
+.darkmode-label {
+  position: relative;
 }
