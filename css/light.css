@@ -22,13 +22,13 @@ input, button {
 }
 
 .footer button {
-  border-color: #63338f;
+  border-color: #333;
   background-color: #fff;
-  color: #63338f;
+  color: #333;
 }
 
 .footer button:hover {
-  background-color: #63338f;
+  background-color: #333;
   color: #fff;
 }
 

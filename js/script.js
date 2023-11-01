@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     butProgram.addEventListener("click", clickProgram);
     autoscroll.addEventListener("click", clickAutoscroll);
     darkMode.addEventListener("change", clickDarkMode);
+    butClear.addEventListener("click", clickClear);
     window.addEventListener("error", function (event) {
         console.log("Got an uncaught error: ", event.error);
     });
@@ -167,6 +168,7 @@ function logMsg(text) {
         log.scrollTop = log.scrollHeight;
     }
 }
+
 
 function annMsg(text) {
     log.innerHTML += `<font color='#FF8200'>` + text + `<br></font>`;
@@ -446,7 +448,7 @@ async function clickProgram() {
 }
 
 async function clickClear() {
-    reset();
+    log.innerHTML = "";
 }
 
 function convertJSON(chunk) {

@@ -471,5 +471,5 @@ div.right2 {
   position: absolute;
   text-align: center;
   bottom: 50px;
-  left: calc(50vw - 60px);
+  left: calc(40vw - 60px);
 }
