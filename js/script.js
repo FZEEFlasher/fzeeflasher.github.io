@@ -335,6 +335,14 @@ async function clickDarkMode() {
 }
 
 async function clickErase() {
+    initMsg(` `);
+    initMsg(` !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! `);
+    initMsg(` !!! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CAUTION!!! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; !!! `);
+    initMsg(` !!! &nbsp;&nbsp;THIS WILL ERASE THE FIRMWARE ON&nbsp; !!! `);
+    initMsg(` !!! &nbsp;&nbsp;&nbsp;YOUR DEVICE! THIS CAN NOT BE &nbsp;&nbsp; !!! `);
+    initMsg(` !!! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNDONE! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; !!! `);
+    initMsg(` !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! `);
+    initMsg(` `);
     if (window.confirm("This will erase the entire flash. Click OK to continue.")) {
         butErase.disabled = true;
         butProgram.disabled = true;
@@ -342,7 +350,10 @@ async function clickErase() {
             logMsg("Erasing flash memory. Please wait...");
             let stamp = Date.now();
             await espStub.eraseFlash();
-            logMsg("Finished. Took " + (Date.now() - stamp) + "ms to erase.");
+            logMsg(`Finished. Took <font color="yellow">` + (Date.now() - stamp) + `ms</font> to erase.`);
+            compMsg(" ");
+            compMsg(" ---> ERASING PROCESS COMPLETED!");
+            compMsg(" ");
         } catch (e) {
             errorMsg(e);
         } finally {
