@@ -468,8 +468,19 @@ div.right2 {
 
 }
 .credits {
-  position: absolute;
-  text-align: center;
+  position: fixed;
+  text-align: center !important;
   bottom: 50px;
-  left: calc(40vw - 60px);
+  left: calc(37vw - 60px);
+}
+hr.creditsbreak {
+  position: fixed;
+  bottom: 70px;
+  width: calc(100% - 140px); /* Adjust the width as needed */
+  left: 70px; /* Adjust the left position as needed */
+  border-color: #d06a00;
+}
+hr.shopbreak {
+  position: absolute center;
+  border-color: #d06a00;
 }
