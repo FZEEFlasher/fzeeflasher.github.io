@@ -39,14 +39,14 @@ const DBpreviouss2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2/dualboot/previous/esp32_marauder_v0_13_2_20231018_flipper_sd_serial.bin',
+    'firmware': 'resources/S2/dualboot/latest/ESPS2-DUAL.bin',
 };
 // Latest DualBoot for ESP32-S2
 const DBlatests2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2/dualboot/latest/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+    'firmware': 'resources/S2/dualboot/latest/ESPS2-DUAL.bin',
 };
 // Previous EvilPortal for ESP32-S2
 const Epreviouss2Files = {
@@ -64,18 +64,79 @@ const Elatests2Files = {
 };
 // Previous BlackMagic for ESP32-S2
 const Bpreviouss2Files = {
-    'bootloader': 'resources/S2/evilportal/latest/bootloader.bin',
-    'partitions': 'resources/S2/evilportal/latest/partition-table.bin',
-    'boot_app0': 'resources/S2/evilportal/latest/nvs.bin',
-    'firmware': 'resources/S2/evilportal/latest/blackmagic.bin',
+    'bootloader': 'resources/S2/blackmagic/bootloader.bin',
+    'partitions': 'resources/S2/blackmagic/partition-table.bin',
+    'boot_app0': 'resources/S2/blackmagic/nvs.bin',
+    'firmware': 'resources/S2/blackmagic/blackmagic.bin',
 };
 // Latest BlackMagic for ESP32-S2
 const Blatests2Files = {
-    'bootloader': 'resources/S2/evilportal/latest/bootloader.bin',
-    'partitions': 'resources/S2/evilportal/latest/partition-table.bin',
-    'boot_app0': 'resources/S2/evilportal/latest/nvs.bin',
-    'firmware': 'resources/S2/evilportal/latest/blackmagic.bin',
+    'bootloader': 'resources/S2/blackmagic/bootloader.bin',
+    'partitions': 'resources/S2/blackmagic/partition-table.bin',
+    'boot_app0': 'resources/S2/blackmagic/nvs.bin',
+    'firmware': 'resources/S2/blackmagic/blackmagic.bin',
 };
+
+
+
+
+// Previous Marauder for ESP32-S2-SDcard
+const Mpreviouss2SDFiles = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2SD/marauder/previous/esp32_marauder_v0_13_2_20231018_flipper.bin',
+};
+// Latest Marauder for ESP32-S2-SDcard
+const Mlatests2SDFiles = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2SD/marauder/latest/esp32_marauder_v0_13_3_20231026_flipper.bin',
+};
+// Previous DualBoot for ESP32-S2-SDcard
+const DBpreviouss2SDFiles = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2SD/dualboot/previous/esp32_marauder_v0_13_2_20231018_flipper.bin',
+};
+// Latest DualBoot for ESP32-S2-SDcard
+const DBlatests2SDFiles = {
+    'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/S2/core/boot_app0.bin',
+    'firmware': 'resources/S2SD/dualboot/latest/esp32_marauder_v0_13_3_20231026_flipper.bin',
+};
+// Previous EvilPortal for ESP32-S2-SDcard
+const Epreviouss2SDFiles = {
+    'bootloader': 'resources/S2/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
+};
+// Latest EvilPortal for ESP32-S2-SDcard
+const Elatests2SDFiles = {
+    'bootloader': 'resources/S2SD/evilportal/latest/EvilPortal.ino.bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/EvilPortal.ino.partitions.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
+    'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
+};
+// Previous BlackMagic for ESP32-S2-SDcard
+const Bpreviouss2SDFiles = {
+    'bootloader': 'resources/S2/blackmagic/bootloader.bin',
+    'partitions': 'resources/S2/blackmagic/partition-table.bin',
+    'boot_app0': 'resources/S2/blackmagic/nvs.bin',
+    'firmware': 'resources/S2/blackmagic/blackmagic.bin',
+};
+// Latest BlackMagic for ESP32-S2-SDcard
+const Blatests2SDFiles = {
+    'bootloader': 'resources/S2/blackmagic/bootloader.bin',
+    'partitions': 'resources/S2/blackmagic/partition-table.bin',
+    'boot_app0': 'resources/S2/blackmagic/nvs.bin',
+    'firmware': 'resources/S2/blackmagic/blackmagic.bin',
+};
+
 
 // Previous Marauder for ESP32-WROOM
 const MpreviouswroomFiles = {
@@ -158,13 +219,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function checkDropdowns() {
         const isAnyDropdownNull = [modelSelect.value, versionSelect.value, variantSelect.value].includes("NULL");
+        const isBoardNotS2 = (modelSelect.value !== "S2" && modelSelect.value !== "S2SD");
+        const isBlackMagicSelected = variantSelect.value === "BlackMagic";
 
-        if (isAnyDropdownNull) {
+        if (isAnyDropdownNull || (isBoardNotS2 && isBlackMagicSelected)) {
             butProgram.disabled = true;
         } else {
             butProgram.disabled = false;
         }
     }
+
     checkDropdowns();
     loadAllSettings();
     updateTheme();
@@ -397,10 +461,45 @@ async function clickProgram() {
     const selectedVersion = versionSelect.value;
     const selectedVariant = variantSelect.value;
 
+    let selectedFiles;
+
+    if (selectedModel === "S2") {
+        selectedFiles = selectedVersion === "latest" ? 
+            (selectedVariant === "Marauder" ? Mlatests2Files : 
+                (selectedVariant === "DB" ? DBlatests2Files : 
+                    (selectedVariant === "BlackMagic" ? Blatests2Files : 
+                        (selectedVariant === "EvilPortal" ? Elatests2Files : "NULL")))) 
+            : (selectedVariant === "Marauder" ? Mpreviouss2Files : 
+                (selectedVariant === "DB" ? DBpreviouss2Files : 
+                    (selectedVariant === "BlackMagic" ? Bpreviouss2Files : 
+                        (selectedVariant === "EvilPortal" ? Epreviouss2Files : "NULL"))));
+    } else if (selectedModel === "S2SD") {
+        selectedFiles = selectedVersion === "latest" ? 
+            (selectedVariant === "Marauder" ? Mlatests2SDFiles : 
+                (selectedVariant === "DB" ? DBlatests2SDFiles : 
+                    (selectedVariant === "BlackMagic" ? Blatests2SDFiles : 
+                        (selectedVariant === "EvilPortal" ? Elatests2SDFiles : "NULL")))) 
+            : (selectedVariant === "Marauder" ? Mpreviouss2SDFiles : 
+                (selectedVariant === "DB" ? DBpreviouss2SDFiles : 
+                    (selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : 
+                        (selectedVariant === "EvilPortal" ? Epreviouss2SDFiles : "NULL"))));
+    } else if (selectedModel === "WROOM") {
+        selectedFiles = selectedVersion === "latest" ? 
+            (selectedVariant === "Marauder" ? MlatestwroomFiles : 
+                (selectedVariant === "DB" ? DBlatestwroomFiles : 
+                    (selectedVariant === "EvilPortal" ? ElatestwroomFiles : "NULL"))) 
+            : (selectedVariant === "Marauder" ? MpreviouswroomFiles : 
+                (selectedVariant === "DB" ? DBpreviouswroomFiles : 
+                    (selectedVariant === "EvilPortal" ? EpreviouswroomFiles : "NULL")));
+    }
+
     function checkDropdowns() {
         const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
+        const isBoardNotS2 = selectedModel !== "S2";
+        const isBlackMagicSelected = selectedVariant === "BlackMagic";
 
-        if (isAnyDropdownNull) {
+        if (isAnyDropdownNull || (isBoardNotS2 && isBlackMagicSelected)) {
+            
             butProgram.disabled = true;
         } else {
             butProgram.disabled = false;
@@ -408,22 +507,6 @@ async function clickProgram() {
     }
 
     checkDropdowns();
-
-    let selectedFiles;
-
-    if (selectedModel === "S2") {
-        if (selectedVariant === "BlackMagic" && selectedVersion !== "latest") {
-            butProgram.disabled = true;
-        } else {
-            selectedFiles = selectedVersion === "latest" ? 
-                (selectedVariant === "Marauder" ? Mlatests2Files : (selectedVariant === "DB" ? DBlatests2Files : (selectedVariant === "EvilPortal" ? Elatests2Files : Blatests2Files))) 
-                : (selectedVariant === "Marauder" ? Mpreviouss2Files : (selectedVariant === "DB" ? DBpreviouss2Files : Epreviouss2Files));
-        }
-    } else if (selectedModel === "WROOM") {
-        selectedFiles = selectedVersion === "latest" ? 
-            (selectedVariant === "Marauder" ? MlatestwroomFiles : (selectedVariant === "DB" ? DBlatestwroomFiles : ElatestwroomFiles)) 
-            : (selectedVariant === "Marauder" ? MpreviouswroomFiles : (selectedVariant === "DB" ? DBpreviouswroomFiles : EpreviouswroomFiles));
-    }
     const flashMessages = document.getElementById("flashMessages");
     flashMessages.style.display = "block";
 
