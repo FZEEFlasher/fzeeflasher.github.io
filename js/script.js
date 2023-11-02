@@ -62,6 +62,21 @@ const Elatests2Files = {
     'boot_app0': 'resources/S2/evilportal/latest/boot_app0.bin',
     'firmware': 'resources/S2/evilportal/latest/EvilPortal.ino.bin',
 };
+// Previous BlackMagic for ESP32-S2
+const Bpreviouss2Files = {
+    'bootloader': 'resources/S2/evilportal/latest/bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/partition-table.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/nvs.bin',
+    'firmware': 'resources/S2/evilportal/latest/blackmagic.bin',
+};
+// Latest BlackMagic for ESP32-S2
+const Blatests2Files = {
+    'bootloader': 'resources/S2/evilportal/latest/bootloader.bin',
+    'partitions': 'resources/S2/evilportal/latest/partition-table.bin',
+    'boot_app0': 'resources/S2/evilportal/latest/nvs.bin',
+    'firmware': 'resources/S2/evilportal/latest/blackmagic.bin',
+};
+
 // Previous Marauder for ESP32-WROOM
 const MpreviouswroomFiles = {
     'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
@@ -397,9 +412,13 @@ async function clickProgram() {
     let selectedFiles;
 
     if (selectedModel === "S2") {
-        selectedFiles = selectedVersion === "latest" ? 
-            (selectedVariant === "Marauder" ? Mlatests2Files : (selectedVariant === "DB" ? DBlatests2Files : Elatests2Files)) 
-            : (selectedVariant === "Marauder" ? Mpreviouss2Files : (selectedVariant === "DB" ? DBpreviouss2Files : Epreviouss2Files));
+        if (selectedVariant === "BlackMagic" && selectedVersion !== "latest") {
+            butProgram.disabled = true;
+        } else {
+            selectedFiles = selectedVersion === "latest" ? 
+                (selectedVariant === "Marauder" ? Mlatests2Files : (selectedVariant === "DB" ? DBlatests2Files : (selectedVariant === "EvilPortal" ? Elatests2Files : Blatests2Files))) 
+                : (selectedVariant === "Marauder" ? Mpreviouss2Files : (selectedVariant === "DB" ? DBpreviouss2Files : Epreviouss2Files));
+        }
     } else if (selectedModel === "WROOM") {
         selectedFiles = selectedVersion === "latest" ? 
             (selectedVariant === "Marauder" ? MlatestwroomFiles : (selectedVariant === "DB" ? DBlatestwroomFiles : ElatestwroomFiles)) 
