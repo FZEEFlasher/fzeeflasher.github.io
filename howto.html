@@ -2,12 +2,19 @@
 <html>
 <head>
     <title>FZEE Flasher (beta)</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
-            background-color: #000; /* Black background color */
+            background-color: #000;
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
 			text-align: left;
+            overflow: hidden;
+            font-family: Verdana, Tahoma;
         }
 
         .banner {
@@ -23,8 +30,15 @@
             border: 1px solid #FF8200; /* Orange border */
 			color: #999; /* grayish text color */
             margin: 2px;
-            padding: 200px;
+            padding-top: 200px;
+            padding-left: 200px;
 			text-align: left;
+        }
+        h2 {
+            color: #ccc;
+        }
+        h3 {
+            color: #AAA;
         }
     </style>
 </head>
@@ -37,33 +51,33 @@
     <h2>Welcome to FZEE Flasher(beta)! The -UNOFFICAL- Flipper Zero ESP32 Dev board web flasher.</h2>
     <p><h3>This site is to help facilitate flash updating ESP32 Dev Boards with custom firmware for the Flipper Zero.
         to use this web tool do the following;</h3></p>
-<p>
-<br> 1. Put your ESP32 Dev Board in bootloader mode (some boards will not need this)
-<br>2. Select the connect button at the top right of the page. (a box will show up asking you to connect the paired COM device hit connect)
-<br>3. Next a Select Model menu will show up. using the drop downs select (board) (version) and (firmware).
-<br>4. Next you will select (program). We have provided an (erase) function in case you feel there is a problem with the ESP32.
-<br>5. Once the flash process is complete your ESP32 board will be ready to use with its new firmware.
-</p>
+<ol>
+<li>Put your ESP32 Dev Board in bootloader mode (some boards will not need this)</li>
+<li>Select the connect button at the top right of the page. (a box will show up asking you to connect the paired COM device hit connect)</li>
+<li>Next a Select Model menu will show up. using the drop downs select (board) (version) and (firmware).</li>
+<li>Next you will select (program). We have provided an (erase) function in case you feel there is a problem with the ESP32.</li>
+<li>Once the flash process is complete your ESP32 board will be ready to use with its new firmware.</li>
+</ol>
 <p>
 <h2>FZEE Flasher FAQ:</h2>
 </p>
 <p>
-Q: Is FZEE Flasher affiliated with Flipper Devices or any other custom hardware sites?
-<br> A: No, this site was built for the community by the community.
+<font color="#AAAAAA"><b>Q:</b></font> Is FZEE Flasher affiliated with Flipper Devices or any other custom hardware sites?
+<br><font color="#AAAAAA"><b>A:</b></font> No, this site was built for the community by the community.
 <p/>
 <p>
-Q: Why can I not connect my ESP32 and get the error browser not supported?
-<br> A: Some Browsers have disabled serial support (for security) and will not allow a connection to the ESP32 board.
+<font color="#AAAAAA"><b>Q:</b></font> Why can I not connect my ESP32 and get the error browser not supported?
+<br><font color="#AAAAAA"><b>A:</b></font> Some Browsers have disabled serial support (for security) and will not allow a connection to the ESP32 board.
    You will need to enable it in the browser or use a browser that supports it.
 <p/>
 <p>   
-Q: Will you support X firmware and when?
-<br> A: FZEE Flasher is very new and in beta. We do intend to support many poplar firmware's in the near future
+<b><font color="#AAAAAA">Q:</b></font> Will you support X firmware and when?
+<br><font color="#AAAAAA"><b>A:</b></font> FZEE Flasher is very new and in beta. We do intend to support many poplar firmware's in the near future
    including ones from some 3rd party hardware venders.
 <p/>
 <p>
-Q: how can I help FZEE Flasher?
-<br>A: blah blah blah.</p>
+<b><font color="#AAAAAA">Q:</b></font> How can I help FZEE Flasher?
+<br><font color="#AAAAAA"><b>A:</b></font> blah blah blah.</p><br><br><br><br>
     </div>
 </body>
 </html>
