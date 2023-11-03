@@ -42,7 +42,11 @@
           : "https://unpkg.com/esp-web-flasher@5.1.4/dist/web/index.js?module"
       );
     </script>
-    
+    <script>
+       function HowToPage() {
+          window.open('howto.html', '_blank');
+       }
+    </script>
     <script src="js/script.js" module defer></script>
   </head>
   <body>
@@ -51,7 +55,7 @@
 	     <img src="assets/fzeeflasher2.png">
 		</div></div>
 		<div class="right">
-        <button id="" type="button">HOW-TO</button>
+        <button onclick="HowToPage()" type="button">HOW-TO</button>
         <button id="butConnect" type="button">Connect</button>
       </div>
     </header>
@@ -60,8 +64,8 @@
 		</div>
 	   </div>
 		<div id="notSupported" class="notSupported">
-        Sorry, <b>Web Serial</b> is not supported on this device, make sure
-        you're running Chrome 89 or later.
+        Sorry, <b>Web Serial</b> is not supported in this browser, make sure
+        your browser supports this and is enabled, or use a browser that supports it.
         </div>
       </div>
       <div id="app">
@@ -73,7 +77,9 @@
                 <select id="modelSelect">
                   <option value="NULL"><b>--- SELECT BOARD ---</b></option>
                   <option value="S2">Flipper Dev Board</option>
+                  <option value="S2">Flipper Dev Board(SDcard)</option>
                   <option value="S2">ESP32-S2</option>
+                  <option value="S2">ESP32-S2(SDcard)</option>
                   <option value="WROOM">ESP-WROOM</option>
                   <!-- Add more options for other models if needed -->
                 </select>
@@ -85,7 +91,8 @@
               <select id="variantSelect">
                  <option value="NULL"><b>---- FIRMWARE ----</b></option>
                  <option value="Marauder">Marauder</option>
-                 <option value="Evil Portal">Evil Portal</option>
+                 <option value="EvilPortal">Evil Portal</option>
+                 <option value="BlackMagic">BlackMagic</option>
                  <!-- Add more options for other variants if needed -->
               </select>
               </div>
