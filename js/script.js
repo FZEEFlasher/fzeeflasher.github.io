@@ -25,14 +25,14 @@ const Mpreviouss2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper_sd_serial.bin',
+    'firmware': 'resources/S2/marauder/previous/esp32_marauder_v0_13_4_20231114_flipper_sd_serial.bin',
 };
 // Latest Marauder for ESP32-S2
 const Mlatests2Files = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2/marauder/latest/esp32_marauder_v0_13_3_20231114_flipper_sd_serial.bin',
+    'firmware': 'resources/S2/marauder/latest/esp32_marauder_v0_13_5_20231126_flipper_sd_serial.bin',
 };
 // Previous DualBoot for ESP32-S2
 const DBpreviouss2Files = {
@@ -85,14 +85,14 @@ const Mpreviouss2SDFiles = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2SD/marauder/previous/esp32_marauder_v0_13_3_20231026_flipper.bin',
+    'firmware': 'resources/S2SD/marauder/previous/esp32_marauder_v0_13_4_20231114_flipper.bin',
 };
 // Latest Marauder for ESP32-S2-SDcard
 const Mlatests2SDFiles = {
     'bootloader': 'resources/S2/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/S2/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/S2/core/boot_app0.bin',
-    'firmware': 'resources/S2SD/marauder/latest/esp32_marauder_v0_13_3_20231114_flipper.bin',
+    'firmware': 'resources/S2SD/marauder/latest/esp32_marauder_v0_13_5_20231126_flipper.bin',
 };
 // Previous DualBoot for ESP32-S2-SDcard
 const DBpreviouss2SDFiles = {
@@ -142,14 +142,14 @@ const MpreviouswroomFiles = {
     'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/WROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/WROOM/core/boot_app0.bin',
-    'firmware': 'resources/WROOM/marauder/previous/esp32_marauder_v0_13_3_20231026_old_hardware.bin',
+    'firmware': 'resources/WROOM/marauder/previous/esp32_marauder_v0_13_4_20231114_old_hardware.bin',
 };
 // Latest Marauder for ESP32-WROOM
 const MlatestwroomFiles = {
     'bootloader': 'resources/WROOM/core/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/WROOM/core/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/WROOM/core/boot_app0.bin',
-    'firmware': 'resources/WROOM/marauder/latest/esp32_marauder_v0_13_3_20231114_old_hardware.bin',
+    'firmware': 'resources/WROOM/marauder/latest/esp32_marauder_v0_13_5_20231126_old_hardware.bin',
 };
 // Previous EvilPortal for ESP32-WROOM
 const EpreviouswroomFiles = {
