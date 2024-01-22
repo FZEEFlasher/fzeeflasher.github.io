@@ -20,6 +20,7 @@ const modelSelect = document.getElementById("modelSelect");
 const versionSelect = document.getElementById("versionSelect");
 const variantSelect = document.getElementById("variantSelect");
 const offsets = [0x1000, 0x8000, 0xE000, 0x10000];
+const offsets2 = [0x0, 0x8000, 0xE000, 0x10000];
 
 const appDiv = document.getElementById("app");
 
@@ -311,35 +312,26 @@ async function clickProgram() {
 
     let selectedFiles;
 
-    if (selectedModel === "S2") {
-        selectedFiles = selectedVersion === "latest" ? 
-            (selectedVariant === "Marauder" ? Mlatests2Files : 
-                (selectedVariant === "DB" ? DBlatests2Files : 
-                    (selectedVariant === "BlackMagic" ? Blatests2Files : 
-                        (selectedVariant === "EvilPortal" ? Elatests2Files : "NULL")))) 
-            : (selectedVariant === "Marauder" ? Mpreviouss2Files : 
-                (selectedVariant === "DB" ? DBpreviouss2Files : 
-                    (selectedVariant === "BlackMagic" ? Bpreviouss2Files : 
-                        (selectedVariant === "EvilPortal" ? Epreviouss2Files : "NULL"))));
-    } else if (selectedModel === "S2SD") {
-        selectedFiles = selectedVersion === "latest" ? 
-            (selectedVariant === "Marauder" ? Mlatests2SDFiles : 
-                (selectedVariant === "DB" ? DBlatests2SDFiles : 
-                    (selectedVariant === "BlackMagic" ? Blatests2SDFiles : 
-                        (selectedVariant === "EvilPortal" ? Elatests2SDFiles : "NULL")))) 
-            : (selectedVariant === "Marauder" ? Mpreviouss2SDFiles : 
-                (selectedVariant === "DB" ? DBpreviouss2SDFiles : 
-                    (selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : 
-                        (selectedVariant === "EvilPortal" ? Epreviouss2SDFiles : "NULL"))));
-    } else if (selectedModel === "WROOM") {
-        selectedFiles = selectedVersion === "latest" ? 
-            (selectedVariant === "Marauder" ? MlatestwroomFiles : 
-                (selectedVariant === "DB" ? DBlatestwroomFiles : 
-                    (selectedVariant === "EvilPortal" ? ElatestwroomFiles : "NULL"))) 
-            : (selectedVariant === "Marauder" ? MpreviouswroomFiles : 
-                (selectedVariant === "DB" ? DBpreviouswroomFiles : 
-                    (selectedVariant === "EvilPortal" ? EpreviouswroomFiles : "NULL")));
-    }
+	if (selectedModel === "S2" || selectedModel === "S2SD") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MlatestFiles : 
+				(selectedVariant === "BlackMagic" ? BlatestFiles : "NULL")) 
+			: (selectedVariant === "Marauder" ? MpreviousFiles : 
+				(selectedVariant === "BlackMagic" ? BpreviousFiles : "NULL"));
+	} else if (selectedModel === "WROOM") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MlatestwroomFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MpreviouswroomFiles : "NULL");
+	} else if (selectedModel === "S3") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MS3latestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MS3previousFiles : "NULL");
+	} else if (selectedModel === "DevPro") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MDevProlatestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MDevPropreviousFiles : "NULL");
+	}
+
 
     function checkDropdowns() {
         const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
@@ -375,7 +367,12 @@ async function clickProgram() {
         let fileResource = selectedFiles[fileType];
 
         try {
-            let offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            let offset;
+			if (selectedModel === "S2" || selectedModel === "S2SD" || selectedModel === "WROOM" || selectedModel === "DevPro") {
+                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            } else if (selectedModel === "S3") {
+                offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+		    }
             const message = `<b><center><u>DO NOT TURN OFF OR UNPLUG YOUR BOARD!!</b></u> &nbsp;&nbsp;Flashing ${ucWords(fileType)}...</center>`;
             flashingMessages.innerHTML += `<div>${message}</div>`;
             annMsg(` ---> Flashing ${fileType}.`);
