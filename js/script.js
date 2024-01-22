@@ -340,6 +340,10 @@ async function clickProgram() {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MD1MinilatestFiles : "NULL") 
 			: (selectedVariant === "Marauder" ? MD1MinipreviousFiles : "NULL");
+	} else if (selectedModel === "V6Board") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MV6latestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MV6previousFiles : "NULL");
 	}
 
 
