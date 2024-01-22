@@ -85,7 +85,7 @@ const MS3previousiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPMULTI/core/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_6_20231214_multiboardS3.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_multiboardS3.bin',
 };
 // Latest Marauder for ESP32-S3
 const MS3latestFiles = {
@@ -102,7 +102,7 @@ const MDevPropreviousFiles = {
     'bootloader': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/DEVPRO/core/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_6_20231214_marauder_dev_board_pro.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_marauder_dev_board_pro.bin',
 };
 // Latest Marauder for Flipper Dev Pro
 const MDevProlatestFiles = {
@@ -110,6 +110,23 @@ const MDevProlatestFiles = {
     'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/DEVPRO/boot_app0.bin',
     'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_marauder_dev_board_pro.bin',
+};
+
+
+
+// Previous Marauder for ESP32-D1 Mini
+const MD1MinipreviousFiles = {
+    'bootloader': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/DEVPRO/core/boot_app0.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_esp32_lddb.bin',
+};
+// Latest Marauder for ESP32-D1 Mini
+const MD1MinilatestFiles = {
+    'bootloader': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/DEVPRO/boot_app0.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_esp32_lddb.bin',
 };
 
 

@@ -336,6 +336,10 @@ async function clickProgram() {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MDevProlatestFiles : "NULL") 
 			: (selectedVariant === "Marauder" ? MDevPropreviousFiles : "NULL");
+	} else if (selectedModel === "D1Mini") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MD1MinilatestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MD1MinipreviousFiles : "NULL");
 	}
 
 
