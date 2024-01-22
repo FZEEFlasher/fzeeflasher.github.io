@@ -81,14 +81,14 @@ const MlatestwroomFiles = {
 
 
 // Previous Marauder for ESP32-S3
-const MpreviouswroomFiles = {
+const MS3previousiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPMULTI/core/boot_app0.bin',
     'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_old_hardware.bin',
 };
 // Latest Marauder for ESP32-S3
-const MlatestwroomFiles = {
+const MS3latestFiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPMULTI/boot_app0.bin',
@@ -99,14 +99,14 @@ const MlatestwroomFiles = {
 
 
 // Previous Marauder for Flipper Dev Pro
-const MpreviouswroomFiles = {
+const MDevPropreviousFiles = {
     'bootloader': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/DEVPRO/core/boot_app0.bin',
     'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_old_hardware.bin',
 };
 // Latest Marauder for Flipper Dev Pro
-const MlatestwroomFiles = {
+const MDevProlatestFiles = {
     'bootloader': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/DEVPRO/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/DEVPRO/boot_app0.bin',
