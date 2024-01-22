@@ -312,13 +312,20 @@ async function clickProgram() {
 
     let selectedFiles;
 
-	if (selectedModel === "S2" || selectedModel === "S2SD") {
+	if (selectedModel === "S2") {
 		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MlatestFiles : 
-				(selectedVariant === "BlackMagic" ? BlatestFiles : "NULL")) 
-			: (selectedVariant === "Marauder" ? MpreviousFiles : 
-				(selectedVariant === "BlackMagic" ? BpreviousFiles : "NULL"));
-	} else if (selectedModel === "WROOM") {
+			(selectedVariant === "Marauder" ? Mlatests2Files : 
+				(selectedVariant === "BlackMagic" ? Blatests2Files : "NULL")) 
+			: (selectedVariant === "Marauder" ? Mpreviouss2Files : 
+				(selectedVariant === "BlackMagic" ? Bpreviouss2Files : "NULL"));
+	} else if (selectedModel === "S2SD") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? Mlatests2SDFiles : 
+				(selectedVariant === "BlackMagic" ? Blatests2SDFiles : "NULL")) 
+			: (selectedVariant === "Marauder" ? Mpreviouss2SDFiles : 
+				(selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : "NULL"));
+	}
+	else if (selectedModel === "WROOM") {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MlatestwroomFiles : "NULL") 
 			: (selectedVariant === "Marauder" ? MpreviouswroomFiles : "NULL");
