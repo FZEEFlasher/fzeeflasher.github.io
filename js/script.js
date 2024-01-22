@@ -324,8 +324,7 @@ async function clickProgram() {
 				(selectedVariant === "BlackMagic" ? Blatests2SDFiles : "NULL")) 
 			: (selectedVariant === "Marauder" ? Mpreviouss2SDFiles : 
 				(selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : "NULL"));
-	}
-	else if (selectedModel === "WROOM") {
+	} else if (selectedModel === "WROOM") {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MlatestwroomFiles : "NULL") 
 			: (selectedVariant === "Marauder" ? MpreviouswroomFiles : "NULL");
