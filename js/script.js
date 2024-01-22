@@ -382,10 +382,10 @@ async function clickProgram() {
 
         try {
             let offset;
-			if (selectedModel === "S2" || selectedModel === "S2SD" || selectedModel === "WROOM" || selectedModel === "DevPro") {
-                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-            } else if (selectedModel === "S3") {
+			if (selectedModel === "S3") {
                 offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            } else {
+                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
 		    }
             const message = `<b><center><u>DO NOT TURN OFF OR UNPLUG YOUR BOARD!!</b></u> &nbsp;&nbsp;Flashing ${ucWords(fileType)}...</center>`;
             flashingMessages.innerHTML += `<div>${message}</div>`;
