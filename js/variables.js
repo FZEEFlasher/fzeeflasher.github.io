@@ -86,14 +86,14 @@ const MV6previousFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/core/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_old_hardware.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_v6.bin',
 };
 // Latest Marauder for V6 Board
 const MV6latestFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_old_hardware.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_v6.bin',
 };
 
 
