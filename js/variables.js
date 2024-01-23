@@ -98,6 +98,59 @@ const MV6latestFiles = {
 
 
 
+
+// Previous Marauder for V6.1 Board
+const MV6_1previousFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/core/boot_app0.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_v6_1.bin',
+};
+// Latest Marauder for V6.1 Board
+const MV6_1latestFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_v6_1.bin',
+};
+
+
+
+
+// Previous Marauder for Kit Package
+const MKitpreviousFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/core/boot_app0.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_kit.bin',
+};
+// Latest Marauder for Kit Package
+const MKitlatestFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_kit.bin',
+};
+
+
+
+
+// Previous Marauder for V6 Mini
+const MV6MinipreviousFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/core/boot_app0.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_5_20231126_mini.bin',
+};
+// Latest Marauder for V6 Mini
+const MV6MinilatestFiles = {
+    'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
+    'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
+    'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_6_20231214_mini.bin',
+};
+
+
 // Previous Marauder for ESP32-S3
 const MS3previousiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',

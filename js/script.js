@@ -383,6 +383,18 @@ async function clickProgram() {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MV6latestFiles : "NULL") 
 			: (selectedVariant === "Marauder" ? MV6previousFiles : "NULL");
+	} else if (selectedModel === "V6Mini") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MV6MinilatestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MV6MinipreviousFiles : "NULL");
+	} else if (selectedModel === "V6_1Board") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MV6_1BoardlatestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MV6_1BoardpreviousFiles : "NULL");
+	} else if (selectedModel === "KitPackage") {
+		selectedFiles = selectedVersion === "latest" ? 
+			(selectedVariant === "Marauder" ? MKitlatestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MKitpreviousFiles : "NULL");
 	}
 
     function checkDropdowns() {
