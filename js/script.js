@@ -440,7 +440,6 @@ async function clickProgram() {
             );
             annMsg(` ---> Finished flashing ${fileType}.`);
             annMsg(` `);
-            flashingMessages.lastElementChild.remove();
 
             await sleep(100);
         } catch (e) {
