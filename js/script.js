@@ -262,6 +262,42 @@ async function clickDarkMode() {
     saveSetting("darkmode", darkMode.checked);
 }
 
+function createProgressBarDialog() {
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .blinking-text {
+            animation: blink 1s linear infinite;
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    const progressBarDialog = document.createElement("div");
+    progressBarDialog.id = "progressBarDialog";
+    progressBarDialog.style.position = "fixed";
+    progressBarDialog.style.left = "50%";
+    progressBarDialog.style.top = "50%";
+    progressBarDialog.style.transform = "translate(-50%, -50%)";
+    progressBarDialog.style.padding = "40px"; 
+    progressBarDialog.style.backgroundColor = "#333333";
+    progressBarDialog.style.border = "2px solid #f89521";
+    progressBarDialog.style.borderRadius = "10px";
+    progressBarDialog.style.color = "white";
+    progressBarDialog.style.zIndex = "1000";
+    progressBarDialog.style.fontSize = "1.5em"; 
+    progressBarDialog.innerHTML = `
+        <div class="blinking-text" style="margin-bottom: 20px;">Flashing in progress...</div>
+        <div id="progressBar" style="width: 100%; background-color: #e0e0e0; border-radius: 8px;">
+            <div id="progress" style="width: 0%; height: 30px; background-color: #f89521; border-radius: 8px;"></div>
+        </div>
+    `;
+    document.body.appendChild(progressBarDialog);
+    return progressBarDialog;
+}
+
 async function clickErase() {
     initMsg(` `);
     initMsg(` !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! `);
@@ -290,6 +326,7 @@ async function clickErase() {
         }
     }
 }
+
 async function clickProgram() {
     const readUploadedFileAsArrayBuffer = (inputFile) => {
         const reader = new FileReader();
@@ -309,6 +346,8 @@ async function clickProgram() {
     const selectedModel = modelSelect.value;
     const selectedVersion = versionSelect.value;
     const selectedVariant = variantSelect.value;
+    const progressBarDialog = createProgressBarDialog();
+    const progress = document.getElementById("progress");
 
     let selectedFiles;
 
@@ -346,7 +385,6 @@ async function clickProgram() {
 			: (selectedVariant === "Marauder" ? MV6previousFiles : "NULL");
 	}
 
-
     function checkDropdowns() {
         const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
         const isBoardNotS2 = selectedModel !== "S2";
@@ -362,8 +400,7 @@ async function clickProgram() {
 
     checkDropdowns();
     const flashMessages = document.getElementById("flashMessages");
-    flashMessages.style.display = "block";
-
+    
     butErase.disabled = true;
     butProgram.disabled = true;
 
@@ -381,15 +418,16 @@ async function clickProgram() {
         let fileResource = selectedFiles[fileType];
 
         try {
+            const progressPercentage = ((fileTypes.indexOf(fileType) + 1) / fileTypes.length) * 100;
+            progress.style.width = progressPercentage + "%";
+
             let offset;
-			if (selectedModel === "S3") {
-                offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-            } else {
+			if (selectedModel === "S2" || selectedModel === "S2SD" || selectedModel === "WROOM" || selectedModel === "DevPro") {
                 offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            } else if (selectedModel === "S3") {
+                offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
 		    }
-            const message = `<b><center><u>DO NOT TURN OFF OR UNPLUG YOUR BOARD!!</b></u> &nbsp;&nbsp;Flashing ${ucWords(fileType)}...</center>`;
-            flashingMessages.innerHTML += `<div>${message}</div>`;
-            annMsg(` ---> Flashing ${fileType}.`);
+
             let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
             let contents = await readUploadedFileAsArrayBuffer(binfile);
 
@@ -410,7 +448,8 @@ async function clickProgram() {
         }
     }
 
-    // Re-enable the erase and program buttons
+    progressBarDialog.remove();
+
     butErase.disabled = false;
     butProgram.disabled = false;
     flashMessages.style.display = "none";
@@ -418,7 +457,7 @@ async function clickProgram() {
     compMsg(" ");
     logMsg("Restart the board or disconnect to use the device.");
 }
-
+        
 async function clickClear() {
     log.innerHTML = "";
 }
