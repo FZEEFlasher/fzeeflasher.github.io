@@ -435,9 +435,9 @@ async function clickProgram() {
 
             let offset;
 			if (selectedModel === "S3") {
-                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-            } else {
                 offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
+            } else {
+                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
 		    }
 
             let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
