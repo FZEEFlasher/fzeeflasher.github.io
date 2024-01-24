@@ -434,9 +434,9 @@ async function clickProgram() {
             progress.style.width = progressPercentage + "%";
 
             let offset;
-			if (selectedModel === "S2" || selectedModel === "S2SD" || selectedModel === "WROOM" || selectedModel === "DevPro") {
+			if (selectedModel === "S3") {
                 offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-            } else if (selectedModel === "S3") {
+            } else {
                 offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
 		    }
 
