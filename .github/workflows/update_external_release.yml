@@ -52,13 +52,16 @@ jobs:
         CURRENT_VERSION=${{ env.current_version }}
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         version_to_int() {
-          IFS='.' read -ra ADDR <<< "$1"
+          # Remove 'v' prefix if present
+          local version=${1#v}
+          IFS='.' read -ra ADDR <<< "$version"
           printf -v int '%03d%03d%03d' "${ADDR[0]}" "${ADDR[1]}" "${ADDR[2]}"
           echo $int
         }
+        
         CURRENT_VERSION_INT=$(version_to_int "$CURRENT_VERSION")
         LATEST_VERSION_INT=$(version_to_int "$LATEST_VERSION")
-
+        
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
           # Move current files to PREVIOUS
@@ -67,9 +70,10 @@ jobs:
           # Prepare for new release
           mkdir -p resources/CURRENT
           # Download all .bin files from the latest release
-          wget -r -l1 -nd -A .bin -P resources/CURRENT "https://github.com/justcallmekoko/ESP32Marauder/releases/download/v$LATEST_VERSION/"
+          wget -r -l1 -nd -A .bin -P resources/CURRENT "https://github.com/justcallmekoko/ESP32Marauder/releases/download/$LATEST_VERSION/"
         else
           echo "No new release found. Current version is up to date."
+        fi
 
     - name: Commit and Push Changes
       if: steps.compare_and_download.outputs.status == 'success' && steps.compare_and_download.outputs.result == true
