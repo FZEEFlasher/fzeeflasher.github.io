@@ -1,0 +1,85 @@
+name: Update External Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Get Current Version from Remote index.html
+      id: current_version
+      run: |
+        # Download index.html from the specified URL
+        curl -o index.html https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/index.html
+
+        # Extract version numbers and get the highest version
+        if [ -f "index.html" ]; then
+          VERSION=$(grep -oP 'Latest\s+\d+\.\d+' index.html | grep -oP '\d+\.\d+' | sort -V | tail -1)
+          if [ -z "$VERSION" ]; then
+            echo "No version found in index.html"
+            echo "version=0.0.0" >> $GITHUB_ENV
+          else
+            echo "Current version: $VERSION"
+            echo "version=$VERSION" >> $GITHUB_ENV
+          fi
+        else
+          echo "No index.html found"
+          echo "version=0.0.0" >> $GITHUB_ENV
+        fi
+  
+    - name: Install Axios
+      run: npm install axios
+
+    - name: Check for New Release
+      id: check_release
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const axios = require('axios');
+          const response = await axios.get('https://api.github.com/repos/justcallmekoko/ESP32Marauder/releases/latest');
+          const latestRelease = response.data.tag_name;
+          return latestRelease;
+
+- name: Compare Versions and Download New Release
+  if: steps.current_version.outputs.version != steps.check_release.outputs.result
+  run: |
+    echo "Checking for new release..."
+    CURRENT_VERSION=$(echo "${{ steps.current_version.outputs.version }}" | tr -d 'v')
+    LATEST_VERSION=$(echo "${{ steps.check_release.outputs.result }}" | tr -d 'v')
+
+    # Function to convert version number to a comparable integer
+    version_to_int() {
+      IFS='.' read -ra ADDR <<< "$1"
+      printf -v int '%03d%03d%03d' "${ADDR[0]}" "${ADDR[1]}" "${ADDR[2]}"
+      echo $int
+    }
+
+    CURRENT_VERSION_INT=$(version_to_int "$CURRENT_VERSION")
+    LATEST_VERSION_INT=$(version_to_int "$LATEST_VERSION")
+
+    if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
+      echo "New release found: $LATEST_VERSION. Downloading..."
+      # Move current files to PREVIOUS
+      mkdir -p resources/PREVIOUS
+      mv resources/CURRENT/* resources/PREVIOUS/
+      # Prepare for new release
+      mkdir -p resources/CURRENT
+      # Download all .bin files from the latest release
+      wget -r -l1 -nd -A .bin -P resources/CURRENT "https://github.com/justcallmekoko/ESP32Marauder/releases/download/v$LATEST_VERSION/"
+    else
+      echo "No new release found. Current version is up to date."
+
+    - name: Cleanup
+      if: steps.current_version.outputs.version != steps.check_release.outputs.result
+      run: |
+        # Additional cleanup commands if needed
