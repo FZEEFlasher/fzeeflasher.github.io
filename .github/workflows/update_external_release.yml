@@ -56,17 +56,14 @@ jobs:
         echo "Checking for new release..."
         CURRENT_VERSION=$(echo "${{ steps.current_version.outputs.version }}" | tr -d 'v')
         LATEST_VERSION=$(echo "${{ steps.check_release.outputs.result }}" | tr -d 'v')
-    
-        # Function to convert version number to a comparable integer
         version_to_int() {
           IFS='.' read -ra ADDR <<< "$1"
           printf -v int '%03d%03d%03d' "${ADDR[0]}" "${ADDR[1]}" "${ADDR[2]}"
           echo $int
         }
-    
         CURRENT_VERSION_INT=$(version_to_int "$CURRENT_VERSION")
         LATEST_VERSION_INT=$(version_to_int "$LATEST_VERSION")
-    
+
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
           # Move current files to PREVIOUS
