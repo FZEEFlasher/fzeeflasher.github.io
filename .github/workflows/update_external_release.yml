@@ -24,7 +24,7 @@ jobs:
 
         # Extract version numbers and get the highest version
         if [ -f "index.html" ]; then
-          VERSION=$(grep -oP '>\d+\.\d+\.\d+<' index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
+          VERSION=$(grep -oP 'Latest\s+\d+\.\d+' index.html | grep -oP '\d+\.\d+' | sort -V | tail -1)
           if [ -z "$VERSION" ]; then
             echo "No version found in index.html"
             echo "version=0.0.0" >> $GITHUB_ENV
@@ -36,8 +36,7 @@ jobs:
           echo "No index.html found"
           echo "version=0.0.0" >> $GITHUB_ENV
         fi
-
-
+  
     - name: Install Axios
       run: npm install axios
 
