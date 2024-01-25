@@ -1,4 +1,4 @@
-name: Update External Release
+name: Check/Update Koko Marauder Firmware
 
 on:
   workflow_dispatch:
