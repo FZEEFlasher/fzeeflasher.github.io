@@ -20,7 +20,7 @@ jobs:
       id: current_version
       run: |
         curl -o index.html https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/index.html
-        VERSION=$(grep -oP 'Latest\s+\d+\.\d+' index.html | grep -oP '\d+\.\d+' | sort -V | tail -1)
+        VERSION=$(grep -oP 'Latest\s+\d+\.\d+\.\d+' index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
         if [ -z "$VERSION" ]; then
           echo "No version found in index.html"
           echo "current_version=0.0.0" >> $GITHUB_ENV
