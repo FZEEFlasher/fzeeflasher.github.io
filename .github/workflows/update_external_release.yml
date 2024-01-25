@@ -3,7 +3,6 @@ name: Update External Release
 on:
   workflow_dispatch:
 
-
 jobs:
   update_release:
     runs-on: ubuntu-latest
