@@ -64,13 +64,28 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
+          rm -rf resources/PREVIOUS/*
           # Move current files to PREVIOUS
           mkdir -p resources/PREVIOUS
           mv resources/CURRENT/* resources/PREVIOUS/
           # Prepare for new release
           mkdir -p resources/CURRENT
-          # Download all .bin files from the latest release
-          wget -r -l1 -nd -A .bin -P resources/CURRENT "https://github.com/justcallmekoko/ESP32Marauder/releases/download/$LATEST_VERSION/"
+          # GitHub user and repository
+          GITHUB_USER="JustCallMeKoko"
+          GITHUB_REPO="ESP32Marauder"
+          # Construct the release URL using the version variable
+          RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${LATEST_VERSION}"
+          DOWNLOAD_DIR="resources/CURRENT"
+          # Create the directory if it doesn't exist
+          # Fetch the release page and parse it for .bin file URLs
+          FILE_URLS=$(curl -Ls $RELEASE_URL | grep -oP 'href="\K[^"]+\.bin(?=")')
+          # Download each file
+          for FILE_URL in $FILE_URLS; do
+              # Construct the full URL
+              FULL_URL="https://github.com${FILE_URL}"
+              # Use wget to download the file into the specified directory
+              wget -P "$DOWNLOAD_DIR" "$FULL_URL"
+          done
         else
           echo "No new release found. Current version is up to date."
         fi
