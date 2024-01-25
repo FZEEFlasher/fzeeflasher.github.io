@@ -32,6 +32,9 @@ jobs:
           echo "::set-output name=version::"
         fi
 
+    - name: Install Axios
+      run: npm install axios
+
     - name: Check for New Release
       id: check_release
       uses: actions/github-script@v5
