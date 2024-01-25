@@ -19,9 +19,12 @@ jobs:
       with:
         node-version: '14'
 
-    - name: Get Current Version from index.html
+    - name: Get Current Version from Remote index.html
       id: current_version
       run: |
+        # Download index.html from the specified URL
+        curl -o index.html https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/index.html
+
         # Extract version numbers and get the highest version
         if [ -f "index.html" ]; then
           VERSION=$(grep -oP '>\d+\.\d+\.\d+<' index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
