@@ -19,24 +19,21 @@ jobs:
     - name: Get Current Version from Remote index.html
       id: current_version
       run: |
-        # Download index.html from the specified URL
-        curl -o index.html https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/index.html
-
-        # Extract version numbers and get the highest version
+        # ... [previous code] ...
         if [ -f "index.html" ]; then
           VERSION=$(grep -oP 'Latest\s+\d+\.\d+' index.html | grep -oP '\d+\.\d+' | sort -V | tail -1)
           if [ -z "$VERSION" ]; then
             echo "No version found in index.html"
-            echo "version=0.0.0" >> $GITHUB_ENV
+            VERSION="0.0.0"
           else
             echo "Current version: $VERSION"
-            echo "version=$VERSION" >> $GITHUB_ENV
           fi
         else
           echo "No index.html found"
-          echo "version=0.0.0" >> $GITHUB_ENV
+          VERSION="0.0.0"
         fi
-  
+        echo "current_version=$VERSION" >> $GITHUB_ENV
+      
     - name: Install Axios
       run: npm install axios
 
