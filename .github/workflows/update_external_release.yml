@@ -1,0 +1,59 @@
+name: Update External Release
+
+on:
+  schedule:
+    # Runs at 00:00 UTC everyday
+    - cron: '0 0 * * *'
+
+jobs:
+  update_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Get Current Version from index.html
+      id: current_version
+      run: |
+        # Extract version numbers and get the highest version
+        if [ -f "index.html" ]; then
+          VERSION=$(grep -oP '>\d+\.\d+\.\d+<' index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
+          echo "Current version: $VERSION"
+          echo "::set-output name=version::$VERSION"
+        else
+          echo "No current version found in index.html"
+          echo "::set-output name=version::"
+        fi
+
+    - name: Check for New Release
+      id: check_release
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const axios = require('axios');
+          const response = await axios.get('https://api.github.com/repos/justcallmekoko/ESP32Marauder/releases/latest');
+          const latestRelease = response.data.tag_name;
+          return latestRelease;
+
+    - name: Compare Versions and Download New Release
+      if: steps.current_version.outputs.version != steps.check_release.outputs.result
+      run: |
+        echo "New release found. Downloading..."
+        # Move current files to PREVIOUS
+        mkdir -p resources/PREVIOUS
+        mv resources/CURRENT/* resources/PREVIOUS/
+        # Prepare for new release
+        mkdir -p resources/CURRENT
+        # Download all .bin files from the latest release
+        wget -r -l1 -nd -A .bin -P resources/CURRENT https://github.com/justcallmekoko/ESP32Marauder/releases/download/${{ steps.check_release.outputs.result }}/
+
+    - name: Cleanup
+      if: steps.current_version.outputs.version != steps.check_release.outputs.result
+      run: |
+        # Additional cleanup commands if needed
