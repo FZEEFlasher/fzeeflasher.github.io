@@ -19,24 +19,20 @@ jobs:
     - name: Get Current Version from Remote index.html
       id: current_version
       run: |
-        # ... [previous code] ...
-        if [ -f "index.html" ]; then
+       if [ -f "index.html" ]; then
           VERSION=$(grep -oP 'Latest\s+\d+\.\d+' index.html | grep -oP '\d+\.\d+' | sort -V | tail -1)
           if [ -z "$VERSION" ]; then
             echo "No version found in index.html"
-            VERSION="0.0.0"
+            echo "CURRENT_VERSION=0.0.0" >> $GITHUB_ENV
           else
             echo "Current version: $VERSION"
+            echo "CURRENT_VERSION=$VERSION" >> $GITHUB_ENV
           fi
         else
           echo "No index.html found"
-          VERSION="0.0.0"
+          echo "CURRENT_VERSION=0.0.0" >> $GITHUB_ENV
         fi
-        echo "current_version=$VERSION" >> $GITHUB_ENV
-      
-    - name: Install Axios
-      run: npm install axios
-
+    
     - name: Check for New Release
       id: check_release
       uses: actions/github-script@v5
@@ -46,9 +42,10 @@ jobs:
           const response = await axios.get('https://api.github.com/repos/justcallmekoko/ESP32Marauder/releases/latest');
           const latestRelease = response.data.tag_name;
           return latestRelease;
-
+        result-encoding: string
+    
     - name: Compare Versions and Download New Release
-      if: steps.current_version.outputs.version != steps.check_release.outputs.result
+      if: env.CURRENT_VERSION != steps.check_release.outputs.result
       run: |
         echo "Checking for new release..."
         CURRENT_VERSION=$(echo "${{ steps.current_version.outputs.version }}" | tr -d 'v')
