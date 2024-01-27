@@ -2,6 +2,7 @@
 ## Forked off of Adafruits ESP WebFlasher
 
 Statuses:
+
 [![Marauder Update Service](https://github.com/FZEEFlasher/fzeeflasher.github.io/actions/workflows/CheckMarauder.yml/badge.svg)](https://github.com/FZEEFlasher/fzeeflasher.github.io/actions/workflows/CheckMarauder.yml)
 
 JavaScript package to install firmware on ESP devices via the browser using WebSerial.
