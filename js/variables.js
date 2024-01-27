@@ -152,7 +152,7 @@ const MV6MinilatestFiles = {
 
 
 // Previous Marauder for ESP32-S3
-const MS3previousiles = {
+const MS3previousFiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPMULTI/core/boot_app0.bin',
