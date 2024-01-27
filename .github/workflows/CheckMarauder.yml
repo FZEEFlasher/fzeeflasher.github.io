@@ -1,4 +1,4 @@
-name: Check/Update Koko Marauder Firmware
+name: Update Marauder Firmware Service
 
 on:
   schedule:
