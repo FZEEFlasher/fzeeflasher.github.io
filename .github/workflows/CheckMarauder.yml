@@ -27,6 +27,11 @@ jobs:
           echo "Current version: $VERSION"
           echo "current_version=$VERSION" >> $GITHUB_ENV
         fi
+        if [ "$current_version" -eq "0.0.0" ]; then
+          echo "STOP=1" >> $GITHUB_ENV
+        else
+          echo "STOP=0" >> $GITHUB_ENV
+        fi
 
     - name: Install Axios
       run: npm install axios
@@ -52,6 +57,10 @@ jobs:
 
     - name: Compare Versions and Download New Release
       run: |
+        STOP=${{ env.STOP }}
+        if [ "$STOP" -eq 1 ]; then 
+          exit
+        fi
         CURRENT_VERSION=${{ env.current_version }}
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         version_to_int() {
