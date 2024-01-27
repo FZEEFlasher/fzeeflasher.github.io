@@ -79,8 +79,8 @@ jobs:
             echo "Downloading $FULL_URL"
             wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
-    - name: Update filenames in variables.js
-      run: |
+  - name: Update filenames in variables.js
+    run: | 
           cd $HOME
           cd /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/js
           update() {
