@@ -59,6 +59,7 @@ jobs:
       run: |
         STOP=${{ env.STOP }}
         if [ "$STOP" -eq 1 ]; then 
+          echo "NOUPDATE=1" >> $GITHUB_ENV
           exit
         fi
         CURRENT_VERSION=${{ env.current_version }}
