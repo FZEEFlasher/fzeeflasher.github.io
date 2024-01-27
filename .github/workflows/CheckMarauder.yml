@@ -65,7 +65,7 @@ jobs:
           echo "New release found: $LATEST_VERSION. Downloading..."
           GITHUB_USER="justcallmekoko"
           GITHUB_REPO="ESP32Marauder"
-          RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/expanded_assets/v${LATEST_VERSION}"
+          RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/expanded_assets/${LATEST_VERSION}"
           DOWNLOAD_DIR="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT"
           
           mkdir -p "$DOWNLOAD_DIR"
