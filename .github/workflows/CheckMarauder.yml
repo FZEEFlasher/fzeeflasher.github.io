@@ -89,6 +89,7 @@ jobs:
           done
         else
           echo "No new release found. Current version is up to date."
+          cho "NOUPDATE=1" >> $GITHUB_ENV
           exit 0
         fi
 
@@ -158,6 +159,10 @@ jobs:
     - name: Commit and Push Changes
       if: steps.check_release.outputs.result != 'false'  # Corrected condition
       run: |
+        NOUPDATE=${{ env.NOUPDATE }}
+        if [$NOUPDATE -eq 1]; then 
+           exit
+        fi
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         git add .
         git commit -m "Update version to $LATEST_VERSION of Marauder"
