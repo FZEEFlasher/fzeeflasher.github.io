@@ -3,14 +3,14 @@ const Mpreviouss2Files = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/SSTATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': /resources\/PREVIOUS\/(.*)_flipper_sd_serial.bin/,
+    'firmware': /resources\/PREVIOUS\/(.*_flipper_sd_serial.bin)/,
 };
 // Latest Marauder for ESP32-S2
 const Mlatests2Files = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': /resources\/CURRENT\/(.*)_flipper_sd_serial.bin/,
+    'firmware': /resources\/CURRENT\/(.*_flipper_sd_serial.bin)/,
 };
 // Previous BlackMagic for ESP32-S2
 const Bpreviouss2Files = {
@@ -37,14 +37,14 @@ const Mpreviouss2SDFiles = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': /resources\/PREVIOUS\/(.*)_flipper.bin/,
+    'firmware': /resources\/PREVIOUS\/(.*_flipper.bin)/,
 };
 // Latest Marauder for ESP32-S2-SDcard
 const Mlatests2SDFiles = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': /resources\/CURRENT\/(.*)_flipper.bin/,
+    'firmware': /resources\/CURRENT\/(.*_flipper.bin)/,
 };
 // Previous BlackMagic for ESP32-S2-SDcard
 const Bpreviouss2SDFiles = {
