@@ -63,6 +63,10 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
+          cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT
+          mkdir -p /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT
           GITHUB_USER="justcallmekoko"
           GITHUB_REPO="ESP32Marauder"
           RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/expanded_assets/${LATEST_VERSION}"
@@ -100,9 +104,9 @@ jobs:
             js_file="$4"
           
             if [ "$folder_type" == "CURRENT" ]; then
-              folder="../resources/CURRENT"
+              folder="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT"
             elif [ "$folder_type" == "PREVIOUS" ]; then
-              folder="../resources/PREVIOUS"
+              folder="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS"
             fi
             if [ ! -d "$folder" ]; then
               echo "Error: Folder $folder does not exist."
@@ -118,7 +122,7 @@ jobs:
               echo "No files found with suffix '$suffix' in $folder."
               exit 0
             fi
-            relative_path="${file#../}"
+            relative_path="${file#/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/}"
             sed -i "${line_number}!b; :a; N; /'firmware': '.*'/!ba; s|'firmware': '.*'|'firmware': '$relative_path'|" "$js_file"
             echo "The first 'firmware' entry after '$search_text' in $js_file updated to match the file with suffix '$suffix' in folder type '$folder_type'."
           }
