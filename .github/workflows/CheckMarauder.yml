@@ -64,18 +64,18 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
-          rm -rf resources/PREVIOUS/*
+          rm -rf fzeeflasher.github.io/resources/PREVIOUS/*
           # Move current files to PREVIOUS
-          mkdir -p resources/PREVIOUS
-          mv resources/CURRENT/* resources/PREVIOUS/
+          mkdir -p fzeeflasher.github.io/resources/PREVIOUS
+          mv fzeeflasher.github.io/resources/CURRENT/* fzeeflasher.github.io/resources/PREVIOUS/
           # Prepare for new release
-          mkdir -p resources/CURRENT
+          mkdir -p fzeeflasher.github.io/resources/CURRENT
           # GitHub user and repository
           GITHUB_USER="JustCallMeKoko"
           GITHUB_REPO="ESP32Marauder"
           # Construct the release URL using the version variable
           RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${LATEST_VERSION}"
-          DOWNLOAD_DIR="resources/CURRENT"
+          DOWNLOAD_DIR="fzeeflasher.github.io/resources/CURRENT"
           # Create the directory if it doesn't exist
           # Fetch the release page and parse it for .bin file URLs
           FILE_URLS=$(curl -Ls $RELEASE_URL | grep -oP 'href="\K[^"]+\.bin(?=")')
@@ -86,6 +86,7 @@ jobs:
               # Use wget to download the file into the specified directory
               wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
+          cd $HOME
           cd fzeeflasher.github.io/js
           update() {
             dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
