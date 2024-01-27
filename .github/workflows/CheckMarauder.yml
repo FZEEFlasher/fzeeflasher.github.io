@@ -89,6 +89,7 @@ jobs:
           done
         else
           echo "No new release found. Current version is up to date."
+          exit 1
         fi
 
     - name: Update filenames in variables.js
