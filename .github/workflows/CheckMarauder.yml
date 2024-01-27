@@ -79,6 +79,10 @@ jobs:
             echo "Downloading $FULL_URL"
             wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
+        else
+          echo "No new release found. Current version is up to date."
+        fi
+
     - name: Update filenames in variables.js
       run: | 
           cd $HOME
@@ -143,12 +147,9 @@ jobs:
           update "MD1MinilatestFiles" "lddb.bin" "CURRENT" "variables.js"
           update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "variables.js"
           update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "variables.js"
-        else
-          echo "No new release found. Current version is up to date."
-        fi
 
     - name: Commit and Push Changes
-      if: steps.compare_and_download.outputs.status == 'success' && steps.compare_and_download.outputs.result == true
+      if: steps.check_release.outputs.result != 'false'  # Corrected condition
       run: |
         git add .
         git commit -m "Update version to ${{ env.current_version }}"
