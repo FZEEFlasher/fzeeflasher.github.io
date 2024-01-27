@@ -161,6 +161,19 @@ jobs:
           update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "$JS_FOLDER/variables.js"
         fi
+
+    - name: Update index.html to Correct firmware
+      run: |
+        NOUPDATE=${{ env.NOUPDATE }}
+        if [ "$NOUPDATE" -eq 1 ]; then 
+          exit
+        fi
+        file="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html"  # Replace with your HTML file path
+        CURRENT_VERSION=${{ env.current_version }}
+        LATEST_VERSION=${{ steps.check_release.outputs.result }}
+        sed -i 's/<option value="latest">Latest [^<]\+<\/option>/<option value="latest">Latest '"$LATEST_VERSION"'<\/option>/g' "$file"
+        sed -i 's/<option value="previous">Previous [^<]\+<\/option>/<option value="previous">Previous '"$CURRENT_VERSION"'<\/option>/g' "$file"
+
     - name: Commit and Push Changes
       if: steps.check_release.outputs.result != 'false'  # Corrected condition
       run: |
