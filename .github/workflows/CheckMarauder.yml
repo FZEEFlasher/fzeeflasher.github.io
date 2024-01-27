@@ -66,8 +66,8 @@ jobs:
           rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS/*
           # Move current files to PREVIOUS
           mkdir -p fzeeflasher.github.io/resources/PREVIOUS
-          cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT/* /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS/*
-          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/CURRENT/*
+          cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/CURRENT
           # Prepare for new release
           mkdir -p /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT
           # GitHub user and repository
