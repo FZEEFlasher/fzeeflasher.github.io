@@ -46,6 +46,10 @@ jobs:
         git config --global user.name 'Github'
         git config --global user.email 'Github Actions'
 
+    - name: Remove Node.js & axios
+      run: |
+        rm -rf node_modules
+
     - name: Compare Versions and Download New Release
       run: |
         CURRENT_VERSION=${{ env.current_version }}
