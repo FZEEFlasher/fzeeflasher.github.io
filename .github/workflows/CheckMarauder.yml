@@ -87,6 +87,7 @@ jobs:
             echo "Downloading $FULL_URL"
             wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
+          echo "NOUPDATE=0" >> $GITHUB_ENV
         else
           echo "No new release found. Current version is up to date."
           echo "NOUPDATE=1" >> $GITHUB_ENV
