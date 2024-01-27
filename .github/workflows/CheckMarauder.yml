@@ -63,19 +63,19 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
-          rm -rf fzeeflasher.github.io/resources/PREVIOUS/*
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS/*
           # Move current files to PREVIOUS
           mkdir -p fzeeflasher.github.io/resources/PREVIOUS
-          cp -rf fzeeflasher.github.io/resources/CURRENT/* fzeeflasher.github.io/resources/PREVIOUS/*
-          rm -rf fzeeflasher.github.io/CURRENT/*
+          cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT/* /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS/*
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/CURRENT/*
           # Prepare for new release
-          mkdir -p fzeeflasher.github.io/resources/CURRENT
+          mkdir -p /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT
           # GitHub user and repository
           GITHUB_USER="JustCallMeKoko"
           GITHUB_REPO="ESP32Marauder"
           # Construct the release URL using the version variable
           RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/tag/${LATEST_VERSION}"
-          DOWNLOAD_DIR="fzeeflasher.github.io/resources/CURRENT"
+          DOWNLOAD_DIR="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT"
           # Create the directory if it doesn't exist
           # Fetch the release page and parse it for .bin file URLs
           FILE_URLS=$(curl -Ls $RELEASE_URL | grep -oP 'href="\K[^"]+\.bin(?=")')
@@ -87,7 +87,7 @@ jobs:
               wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
           cd $HOME
-          cd fzeeflasher.github.io/js
+          cd /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/js
           update() {
             dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
             cd "$dir"
