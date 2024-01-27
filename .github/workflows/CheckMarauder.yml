@@ -89,7 +89,7 @@ jobs:
           done
         else
           echo "No new release found. Current version is up to date."
-          cho "NOUPDATE=1" >> $GITHUB_ENV
+          echo "NOUPDATE=1" >> $GITHUB_ENV
           exit 0
         fi
 
