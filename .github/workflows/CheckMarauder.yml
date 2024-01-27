@@ -184,7 +184,7 @@ jobs:
         file="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html"
         CURRENT_VERSION="${{ env.current_version }}"
         LATEST_VERSION="${{ steps.check_release.outputs.result }}"
-        LATEST_FIX==${LATEST_VERSION#v}
+        LATEST_FIX=${LATEST_VERSION#v}
         sed -i "s/<option value=\"latest\">Latest [^<]\+<\/option>/<option value=\"latest\">Latest $LATEST_FIX<\/option>/g" "$file"
         sed -i "s/<option value=\"previous\">Previous [^<]\+<\/option>/<option value=\"previous\">Previous $CURRENT_VERSION<\/option>/g" "$file"
 
