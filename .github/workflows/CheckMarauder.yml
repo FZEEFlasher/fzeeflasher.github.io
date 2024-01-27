@@ -63,8 +63,7 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
-          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS/*
-          # Move current files to PREVIOUS
+          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
           mkdir -p fzeeflasher.github.io/resources/PREVIOUS
           cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
           rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/CURRENT
