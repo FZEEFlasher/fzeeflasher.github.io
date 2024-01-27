@@ -63,12 +63,6 @@ jobs:
         
         if [ "$CURRENT_VERSION_INT" -lt "$LATEST_VERSION_INT" ]; then
           echo "New release found: $LATEST_VERSION. Downloading..."
-          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
-          mkdir -p fzeeflasher.github.io/resources/PREVIOUS
-          cp -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/PREVIOUS
-          rm -rf /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/CURRENT
-          # Prepare for new release
-          mkdir -p /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/resources/CURRENT
           GITHUB_USER="justcallmekoko"
           GITHUB_REPO="ESP32Marauder"
           RELEASE_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/expanded_assets/v${LATEST_VERSION}"
