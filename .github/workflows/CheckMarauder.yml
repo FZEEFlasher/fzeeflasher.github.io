@@ -103,8 +103,6 @@ jobs:
               folder="../resources/CURRENT"
             elif [ "$folder_type" == "PREVIOUS" ]; then
               folder="../resources/PREVIOUS"
-            else
-              exit 1
             fi
             if [ ! -d "$folder" ]; then
               echo "Error: Folder $folder does not exist."
