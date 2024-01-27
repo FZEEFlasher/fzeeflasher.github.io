@@ -86,6 +86,7 @@ jobs:
               # Use wget to download the file into the specified directory
               wget -P "$DOWNLOAD_DIR" "$FULL_URL"
           done
+          cd fzeeflasher.github.io/js
           update() {
             dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
             cd "$dir"
