@@ -19,8 +19,7 @@ jobs:
     - name: Get Current Version from Remote index.html
       id: current_version
       run: |
-        curl -o index.html https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/index.html
-        VERSION=$(grep -oP 'Latest\s+\d+\.\d+\.\d+' index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
+        VERSION=$(grep -oP 'Latest\s+\d+\.\d+\.\d+' fzeeflasher.github.io/index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
         if [ -z "$VERSION" ]; then
           echo "No version found in index.html"
           echo "current_version=0.0.0" >> $GITHUB_ENV
@@ -44,8 +43,8 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name 'InfoSecREDD'
-        git config --global user.email 'infosecredd@gmail.com'
+        git config --global user.name 'Github'
+        git config --global user.email 'Github Actions'
 
     - name: Compare Versions and Download New Release
       run: |
@@ -67,7 +66,8 @@ jobs:
           rm -rf fzeeflasher.github.io/resources/PREVIOUS/*
           # Move current files to PREVIOUS
           mkdir -p fzeeflasher.github.io/resources/PREVIOUS
-          mv fzeeflasher.github.io/resources/CURRENT/* fzeeflasher.github.io/resources/PREVIOUS/
+          cp -rf fzeeflasher.github.io/resources/CURRENT/* fzeeflasher.github.io/resources/PREVIOUS/*
+          rm -rf fzeeflasher.github.io/CURRENT/*
           # Prepare for new release
           mkdir -p fzeeflasher.github.io/resources/CURRENT
           # GitHub user and repository
