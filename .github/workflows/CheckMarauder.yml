@@ -160,8 +160,8 @@ jobs:
       if: steps.check_release.outputs.result != 'false'  # Corrected condition
       run: |
         NOUPDATE=${{ env.NOUPDATE }}
-        if [$NOUPDATE -eq 1]; then 
-           exit
+        if [ "$NOUPDATE" -eq 1 ]; then 
+          exit
         fi
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         git add .
