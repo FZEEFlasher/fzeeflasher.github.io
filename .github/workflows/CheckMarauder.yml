@@ -126,31 +126,31 @@ jobs:
             sed -i "${line_number}!b; :a; N; /'firmware': '.*'/!ba; s|'firmware': '.*'|'firmware': '$relative_path'|" "$js_file"
             echo "The first 'firmware' entry after '$search_text' in $js_file updated to match the file with suffix '$suffix' in folder type '$folder_type'."
           }
+          JS_FOLDER="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/js"
+          update "Mpreviouss2Files" "flipper_sd_serial.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "Mlatests2Files" "flipper_sd_serial.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "Mpreviouss2Files" "flipper_sd_serial.bin" "PREVIOUS" "variables.js"
-          update "Mlatests2Files" "flipper_sd_serial.bin" "CURRENT" "variables.js"
-          update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "variables.js"
-          update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "variables.js"
+          update "MpreviouswroomFiles" "old_hardware.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MlatestwroomFiles" "old_hardware.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MV6previousFiles" "v6.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MV6latestFiles" "v6.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "MpreviouswroomFiles" "old_hardware.bin" "PREVIOUS" "variables.js"
-          update "MlatestwroomFiles" "old_hardware.bin" "CURRENT" "variables.js"
-          update "MV6previousFiles" "v6.bin" "PREVIOUS" "variables.js"
-          update "MV6latestFiles" "v6.bin" "CURRENT" "variables.js"
+          update "MV6_1previousFiles" "v6_1.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MV6_1latestFiles" "v6_1.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MKitpreviousFiles" "kit.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MKitlatestFiles" "kit.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "MV6_1previousFiles" "v6_1.bin" "PREVIOUS" "variables.js"
-          update "MV6_1latestFiles" "v6_1.bin" "CURRENT" "variables.js"
-          update "MKitpreviousFiles" "kit.bin" "PREVIOUS" "variables.js"
-          update "MKitlatestFiles" "kit.bin" "CURRENT" "variables.js"
+          update "MS3previousFiles" "multiboardS3.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MS3latestFiles" "multiboardS3.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MV6MinipreviousFiles" "mini.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MV6MinilatestFiles" "mini.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "MS3previousFiles" "multiboardS3.bin" "PREVIOUS" "variables.js"
-          update "MS3latestFiles" "multiboardS3.bin" "CURRENT" "variables.js"
-          update "MV6MinipreviousFiles" "mini.bin" "PREVIOUS" "variables.js"
-          update "MV6MinilatestFiles" "mini.bin" "CURRENT" "variables.js"
-          
-          update "MD1MinipreviousFiles" "lddb.bin" "PREVIOUS" "variables.js"
-          update "MD1MinilatestFiles" "lddb.bin" "CURRENT" "variables.js"
-          update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "variables.js"
-          update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "variables.js"
+          update "MD1MinipreviousFiles" "lddb.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MD1MinilatestFiles" "lddb.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "$JS_FOLDER/variables.js"
 
     - name: Commit and Push Changes
       if: steps.check_release.outputs.result != 'false'  # Corrected condition
