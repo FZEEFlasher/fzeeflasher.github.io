@@ -478,7 +478,10 @@ hr.creditsbreak {
   width: calc(100% - 140px); /* Adjust the width as needed */
   left: 70px; /* Adjust the left position as needed */
   border-color: #d06a00;
-}
+}hr.devbreak {
+  position: absolute center;
+  border-color: #d06a00;
+  
 hr.shopbreak {
   position: absolute center;
   border-color: #d06a00;
