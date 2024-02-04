@@ -150,8 +150,8 @@ jobs:
             echo "The first 'firmware' entry after '$search_text' in $js_file updated to match the file with suffix '$suffix' in folder type '$folder_type'."
           }
           JS_FOLDER="/home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/js"
-          update "Mpreviouss2Files" "flipper_sd_serial.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
-          update "Mlatests2Files" "flipper_sd_serial.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "Mpreviouss2Files" "flipper.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "Mlatests2Files" "flipper.bin" "CURRENT" "$JS_FOLDER/variables.js"
           update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
