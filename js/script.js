@@ -288,12 +288,17 @@ function createProgressBarDialog() {
     progressBarDialog.style.color = "white";
     progressBarDialog.style.zIndex = "1000";
     progressBarDialog.style.fontSize = "1.5em"; 
+    progressBarDialog.style.maxWidth = "350px"; // Set a maximum width for the dialog
+    progressBarDialog.style.width = "50%";
+    progressBarDialog.style.boxSizing = "border-box"; // Include padding in width calculation
+    progressBarDialog.style.overflow = "hidden"; // Prevent content from spilling out
     progressBarDialog.innerHTML = `
         <div class="blinking-text" style="margin-bottom: 20px;">Flashing in progress...</div>
         <div id="progressBar" style="width: 100%; background-color: #e0e0e0; border-radius: 8px;">
-            <div id="progress" style="width: 0%; height: 30px; background-color: #f89521; border-radius: 8px;"></div>
+            <div id="progress" style="width: 0%; height: 30px; background-color: #f89521; border-radius: 8px; transition: width 0.5s ease;"></div>
         </div>
     `;
+
     document.body.appendChild(progressBarDialog);
     return progressBarDialog;
 }
@@ -426,30 +431,64 @@ async function clickProgram() {
     const flashingMessages = document.getElementById("flashMessages");
     flashingMessages.innerHTML = "";
 
+    totalSize = 0; 
+    flashedSize = 0;
+    
+    for (let fileType of fileTypes) {
+        let fileResource = selectedFiles[fileType];
+        let response = await fetch(fileResource, { method: 'HEAD' });
+        let fileSize = response.headers.get('content-length');
+    
+        if (fileSize) {
+            totalSize += parseInt(fileSize, 10);
+        } else {
+            console.error(`Failed to get size for file type: ${fileType}`);
+        }
+    }
+        
+    const updateProgressBar = (cumulativeFlashedSize) => {
+        if (cumulativeFlashedSize > totalSize) {
+            console.error(`Cumulative flashed size exceeds total size: ${cumulativeFlashedSize} / ${totalSize}`);
+        } else {
+            flashedSize = cumulativeFlashedSize; 
+        }
+    
+        const progressPercentage = Math.min((flashedSize / totalSize) * 100, 100);
+        //console.log(`Flashing progress: ${progressPercentage.toFixed(2)}%`); 
+       
+        // Update the progress bar in the UI
+        const progressBar = document.getElementById("progress");
+        if (progressBar) {
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+    };
+    
     for (let fileType of fileTypes) {
         let fileResource = selectedFiles[fileType];
 
+        let offsetIndex = fileTypes.indexOf(fileType);
+        let offset;
+        if (selectedModel === "S3") {
+            offset = [0x0, 0x8000, 0xE000, 0x10000][offsetIndex];
+        } else {
+            offset = [0x1000, 0x8000, 0xE000, 0x10000][offsetIndex];
+        }
+
         try {
-            const progressPercentage = ((fileTypes.indexOf(fileType) + 1) / fileTypes.length) * 100;
-            progress.style.width = progressPercentage + "%";
-
-            let offset;
-			if (selectedModel === "S3") {
-                offset = [0x0, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-            } else {
-                offset = [0x1000, 0x8000, 0xE000, 0x10000][fileTypes.indexOf(fileType)];
-		    }
-
             let binfile = new File([await fetch(fileResource).then(r => r.blob())], fileType + ".bin");
             let contents = await readUploadedFileAsArrayBuffer(binfile);
 
+            // Use the appropriate offset for the current file type
+            let offset = offsets[fileType];
+
             await espStub.flashData(
                 contents,
-                () => {
-                    "100%";
-                },
+                (cumulativeFlashedSize) => updateProgressBar(cumulativeFlashedSize),
                 offset
             );
+
+            updateProgressBar(totalSize); 
+
             annMsg(` ---> Finished flashing ${fileType}.`);
             annMsg(` `);
 
