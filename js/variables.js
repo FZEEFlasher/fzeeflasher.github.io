@@ -37,7 +37,7 @@ const Mpreviouss2SDFiles = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_6_20231214_flipper.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_6_20231214_flipper_sd_serial.bin',
 };
 // Latest Marauder for ESP32-S2-SDcard
 const Mlatests2SDFiles = {
