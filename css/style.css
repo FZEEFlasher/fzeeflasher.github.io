@@ -478,11 +478,47 @@ hr.creditsbreak {
   width: calc(100% - 140px); /* Adjust the width as needed */
   left: 70px; /* Adjust the left position as needed */
   border-color: #d06a00;
-}hr.devbreak {
+}
+hr.devbreak {
   position: absolute center;
   border-color: #d06a00;
-  
+}  
 hr.shopbreak {
   position: absolute center;
   border-color: #d06a00;
+}
+
+.dropdown {
+  background-color: #252525; 
+  color: #FF8200;
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #FF8200; 
+  margin: 5px;
+  box-shadow: 3px 3px #d06a00;
+  appearance: none; 
+  -webkit-appearance: none; 
+  cursor: pointer;
+}
+
+.dropdown:hover {
+  background-color: #1e1e1e; 
+}
+
+.dropdown:focus {
+  outline: none; 
+  border-color: #ffa500; 
+}
+
+.dropdown option {
+  padding: 10px;
+  background-color: #252525; 
+  color: #FFFFFF; 
+}
+
+.dropdown optgroup {
+  font-weight: bold;
+  color: #FF8200;
 }

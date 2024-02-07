@@ -75,7 +75,7 @@
             <label class="firmware">
               <div class="model-select">
                 <label for="modelSelect">Select Model:</label>
-                <select id="modelSelect">
+                <select id="modelSelect" class="dropdown">
                   <option value="NULL"><b>--- SELECT BOARD ---</b></option>
                   <optgroup label="+ FLIPPER DEVICES">
 				  <option value="S2">- Flipper Dev Board</option>
@@ -121,12 +121,12 @@
 				  </optgroup>
 				  
                 </select>
-                <select id="versionSelect">
+                <select id="versionSelect" class="dropdown">
                  <option value="NULL"><b>--- VERSION ---</b></option>
                  <option value="latest">Latest 0.13.7</option>
                  <option value="previous">Previous 0.13.6</option>
               </select>
-              <select id="variantSelect">
+              <select id="variantSelect" class="dropdown">
                  <option value="NULL"><b>---- FIRMWARE ----</b></option>
                  <option value="Marauder">Marauder</option>
                  <!-- <option value="EvilPortal">Evil Portal</option> -->

@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    modelSelect.addEventListener('change', checkDropdowns);
+    versionSelect.addEventListener('change', checkDropdowns);
+    variantSelect.addEventListener('change', checkDropdowns);
+
     checkDropdowns();
     loadAllSettings();
     updateTheme();
@@ -215,6 +219,15 @@ async function clickConnect() {
         toggleUIConnected(false);
         espStub = undefined;
         return;
+    }
+
+    try {
+        // Connection logic
+        // If connection is successful, enable the Program button
+        checkDropdowns();
+    } catch (err) {
+        // Handle errors
+        butProgram.disabled = true; // Keep or make the button disabled on error
     }
 
     const esploaderMod = await window.esptoolPackage;
