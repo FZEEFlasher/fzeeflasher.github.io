@@ -472,7 +472,7 @@ div.right2 {
   justify-content: space-between; 
   align-items: flex-start; 
   position: absolute; 
-  top: 75%; 
+  bottom: 5%; 
   left: 0;
   right: 0;
   margin: 0 auto; 
@@ -500,7 +500,7 @@ div.right2 {
 .credits {
   text-align: center;
   position: fixed;
-  bottom: 10px;
+  bottom: 15px;
   left: 0;
   width: 100%;
   padding: 10px 0;
