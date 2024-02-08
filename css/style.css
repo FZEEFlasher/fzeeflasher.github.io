@@ -497,16 +497,6 @@ div.right2 {
   color: #ffa500; 
 }
 
-.developer-section::after {
-  content: "";
-  position: absolute;
-  right: 500px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #d06a00; 
-}
-
 .credits {
   text-align: center;
   position: fixed;
