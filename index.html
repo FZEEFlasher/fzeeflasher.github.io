@@ -123,12 +123,14 @@
 				  
                 </select>
                 <select id="versionSelect" class="dropdown">
-                 <option value="NULL"><b>--- VERSION ---</b></option>
+                  <option value="NULL" disabled selected style="display:none;"><b>--- VERSION ---</b></option>
+                  <optgroup label="--- VERSION ---"></optgroup>
                  <option value="latest">Latest 0.13.7</option>
                  <option value="previous">Previous 0.13.6</option>
               </select>
               <select id="variantSelect" class="dropdown">
-                 <option value="NULL"><b>---- FIRMWARE ----</b></option>
+                <option value="NULL" disabled selected style="display:none;"><b>--- FIRMWARE ---</b></option>
+                <optgroup label="--- FIRMWARE ---"></optgroup>
                  <option value="Marauder">Marauder</option>
                  <!-- <option value="EvilPortal">Evil Portal</option> -->
                  <option value="BlackMagic">BlackMagic</option>

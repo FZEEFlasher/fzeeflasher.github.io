@@ -469,22 +469,37 @@ div.right2 {
 
 .sections-container {
   display: flex;
-  justify-content: space-between; 
-  align-items: flex-start; 
-  position: absolute; 
-  bottom: 5%; 
+  justify-content: center; 
+  align-items: center; 
+  position: absolute;
+  bottom: 10%;
   left: 0;
   right: 0;
-  margin: 0 auto; 
+  margin: auto; 
   width: 50%; 
+  height: 100px; 
 }
 
 .developer-section, .retailer-section {
-  flex-basis: 50%; 
+  flex: 1; 
   display: flex;
   flex-direction: column;
+  justify-content: center; 
   align-items: center;
   padding: 10px;
+}
+
+.sections-container::after {
+  content: "";
+  position: absolute;
+  left: 50%; 
+  transform: translateX(-50%); 
+  top: 50%; 
+  transform: translate(-50%, -50%); 
+  height: 50%; 
+  width: 2px; 
+  background-color: #d06a00;
+  z-index: 1; 
 }
 
 .developer-section h3, .retailer-section h3 {
@@ -495,6 +510,10 @@ div.right2 {
 .developer-section a, .retailer-section a {
   margin-top: 2px; 
   color: #ffa500; 
+}
+
+.developer-section::after {
+  content: none;
 }
 
 .credits {
