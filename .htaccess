@@ -1,0 +1,3 @@
+ErrorDocument 403 https://fzeeflasher.com
+ErrorDocument 404 https://fzeeflasher.com
+Options -Indexes
