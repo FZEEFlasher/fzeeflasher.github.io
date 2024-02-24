@@ -203,3 +203,42 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    - name: Fetch latest commit
+      if: env.NOUPDATE != '1'
+      run: |
+        LATEST_COMMIT=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/naztyent/test2/commits?per_page=1" | \
+            jq -r '.[0].commit.message + "|" + .[0].html_url')
+        echo "COMMIT_INFO=$LATEST_COMMIT" >> $GITHUB_ENV
+
+    - name: Notify Discord
+      if: env.NOUPDATE != '1'
+      run: |
+        TITLE=$(echo "$COMMIT_INFO" | cut -d '|' -f1)
+        COMMIT_URL=$(echo "$COMMIT_INFO" | cut -d '|' -f2)
+
+        if [ ${#TITLE} -gt 256 ]; then
+          TITLE="${TITLE:0:253}..."
+        fi
+              
+        curl -X POST -H "Content-Type: application/json" -d @- "${{ secrets.DISCORD_WEBHOOK }}" <<EOF
+        {
+          "username": "Flashee",
+          "avatar_url": "https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/assets/fzeelogo.webp",
+          "embeds": [{
+            "title": "$TITLE",
+            "url": "$COMMIT_URL",
+            "color": 16291105,
+            "footer": {
+              "text": "GitHub Actions"
+            },
+            "timestamp": "$(date --utc +%FT%TZ)",
+            "thumbnail": {
+              "url": "https://raw.githubusercontent.com/FZEEFlasher/fzeeflasher.github.io/main/assets/fzeeflasher_bot_banner.webp"
+            }
+          }]
+        }
+        EOF
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
