@@ -560,4 +560,13 @@ div.right2 {
 .dropdown optgroup {
   font-weight: bold;
   color: #FF8200;
+<<<<<<< Updated upstream
+=======
+}
+
+.version td {
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+>>>>>>> Stashed changes
 }
