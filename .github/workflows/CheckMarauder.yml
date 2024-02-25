@@ -200,7 +200,7 @@ jobs:
         fi
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         git add .
-        git commit -m "Update version to $LATEST_VERSION of Marauder"
+        git commit -m "Updated Firmware version to $LATEST_VERSION of Marauder."
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
