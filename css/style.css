@@ -562,8 +562,18 @@ div.right2 {
   color: #FF8200;
 }
 
-.version td {
+.version td {	
+  border-collapse: collapse; /* Collapse borders for a tighter appearance */
+  border-spacing: 0; /* Remove spacing between borders */
   border-radius: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  vertical-align: top;
+  padding-top: 0px;
+  padding-bottom: 100px;  
 }
+
+    .top-text {
+        position: relative;
+        top: 0;
+    }
