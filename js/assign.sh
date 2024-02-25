@@ -36,8 +36,8 @@ update() {
   echo "The first 'firmware' entry after '$search_text' in $js_file updated to match the file with suffix '$suffix' in folder type '$folder_type'."
 }
 
-update "Mpreviouss2Files" "flipper_sd_serial.bin" "PREVIOUS" "variables.js"
-update "Mlatests2Files" "flipper_sd_serial.bin" "CURRENT" "variables.js"
+update "Mpreviouss2Files" "flipper.bin" "PREVIOUS" "variables.js"
+update "Mlatests2Files" "flipper.bin" "CURRENT" "variables.js"
 update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "variables.js"
 update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "variables.js"
 
