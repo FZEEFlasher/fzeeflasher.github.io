@@ -21,7 +21,7 @@ jobs:
     - name: Get Current Version from Remote index.html
       id: current_version
       run: |
-        VERSION=$(grep -oP 'Running Marauder \s+\d+\.\d+\.\d+' /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
+        VERSION=$(grep -oP 'Latest Marauder \s+\d+\.\d+\.\d+' /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
         if [ -z "$VERSION" ]; then
           echo "No version found in index.html"
           echo "current_version=0.0.0" >> $GITHUB_ENV
@@ -189,7 +189,7 @@ jobs:
         LATEST_FIX=${LATEST_VERSION#v}
         sed -i "s/<option value=\"latest\">Latest [^<]\+<\/option>/<option value=\"latest\">Latest $LATEST_FIX<\/option>/g" "$file"
         sed -i "s/<option value=\"previous\">Previous [^<]\+<\/option>/<option value=\"previous\">Previous $CURRENT_VERSION<\/option>/g" "$file"
-        sed -i "s/\(<b>Running Marauder \)v[0-9]\+\.[0-9]\+\.[0-9]\+\(<\/b>\)/\1$LATEST_FIX\2/" "$file"
+        sed -i "s/\(<b>Latest Marauder \)v[0-9]\+\.[0-9]\+\.[0-9]\+\(<\/b>\)/\1$LATEST_FIX\2/" "$file"
 
     - name: Commit and Push Changes
       if: steps.check_release.outputs.result != 'false'  # Corrected condition
