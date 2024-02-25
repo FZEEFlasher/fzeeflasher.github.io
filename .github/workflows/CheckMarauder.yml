@@ -2,7 +2,7 @@ name: Update Marauder Firmware Service
 
 on:
   schedule:
-    - cron: '0 */2 * * *' 
+    - cron: '0 * * * *' 
   workflow_dispatch:
 
 jobs:
@@ -200,7 +200,7 @@ jobs:
         fi
         LATEST_VERSION=${{ steps.check_release.outputs.result }}
         git add .
-        git commit -m "Update version to $LATEST_VERSION of Marauder"
+        git commit -m "Updated Firmware version to $LATEST_VERSION of Marauder."
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
