@@ -60,3 +60,4 @@ update "MD1MinipreviousFiles" "lddb.bin" "PREVIOUS" "variables.js"
 update "MD1MinilatestFiles" "lddb.bin" "CURRENT" "variables.js"
 update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "variables.js"
 update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "variables.js"
+

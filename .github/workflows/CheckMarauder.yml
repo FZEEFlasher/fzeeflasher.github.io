@@ -21,7 +21,7 @@ jobs:
     - name: Get Current Version from Remote index.html
       id: current_version
       run: |
-        VERSION=$(grep -oP 'Latest Marauder v\d+\.\d+\.\d+' /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
+        VERSION=$(grep -oP 'Latest Marauder v\s+\d+\.\d+\.\d+' /home/runner/work/fzeeflasher.github.io/fzeeflasher.github.io/index.html | grep -oP '\d+\.\d+\.\d+' | sort -V | tail -1)
         if [ -z "$VERSION" ]; then
           echo "No version found in index.html"
           echo "current_version=0.0.0" >> $GITHUB_ENV
