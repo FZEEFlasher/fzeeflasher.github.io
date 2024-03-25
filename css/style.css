@@ -583,3 +583,126 @@ div.right2 {
         position: relative;
         top: 0;
     }
+
+.terminal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  color: #cecece;
+  font-family: 'proxima-nova', sans-serif;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.connection-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.connection-controls-left {
+  display: flex;
+  align-items: center;
+}
+
+.connection-controls-right {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-output {
+  flex-grow: 1;
+  background-color: #252525;
+  color: #cecece;
+  border: 1px solid #FF8200;
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-bottom: 10px;
+  white-space: pre;
+  word-wrap: break-word;
+  overflow-wrap: break-word; 
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input {
+  flex-grow: 1;
+  background-color: #252525;
+  color: #FFFFFF;
+  padding: 5px;
+  border-radius: 0;
+  border: 2px solid #FF8200;
+  margin-right: 10px;
+}
+
+button#butSend {
+  padding: 3px 20px;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #FF8200;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background: #252525;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+}
+
+button#butSend:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#baudRate {
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background-color: #252525;
+  color: #FFFFFF;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+}
+
+.baud-rate-label {
+  margin-right: 10px; 
+}
+
+#baudRate:hover {
+  background-color: #1e1e1e;
+}
+
+#baudRate:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+#butConnect {
+  padding: 3px 20px;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #FF8200;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background: #252525;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+}
+
+#butConnect:hover {
+  background-color: #fff;
+  color: #000;
+}
