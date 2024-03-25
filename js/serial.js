@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let port;
     let writer;
     let globalReader = null;
+    let device_connected = false;
+    let readLoopExitSignalResolver;
+    let readLoopExitSignal = new Promise(resolve => {
+    readLoopExitSignalResolver = resolve;
+});
 
     async function updateStatus(message) {
         statusDisplay.textContent = message; 
@@ -29,11 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 port = await navigator.serial.requestPort();
                 const baudRate = getBaudRate(); 
                 await port.open({ baudRate });
-    
+
                 await port.setSignals({ dataTerminalReady: true, requestToSend: true });
                 device_connected = true;
                 readLoop();
                 updateStatus("Connected successfully.");
+                connectButton.style.display = 'none';
+                disconnectButton.style.display = 'inline-block';
                 disconnectButton.disabled = false;
                 connectButton.disabled = true;
             } catch (err) {
@@ -53,30 +60,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function readLoop() {
-        while (port.readable && device_connected) {
-            reader = port.readable.getReader();
-            try {
-                while (true) {
-                    const { value, done } = await reader.read();
-                    if (done) {
-                        break;
-                    }
-                    const textChunk = textDecoder.decode(value);
-                    displayData(textChunk);
+        readLoopActive = true;
+        globalReader = port.readable.getReader();
+        try {
+            while (port.readable && device_connected) {
+                const { value, done } = await globalReader.read();
+                if (done || !device_connected) {
+                    break;
                 }
-            } catch (error) {
-                console.error('Read error: ' + error);
-                updateStatus('Read error: ' + error);
-                disconnect();
-            } finally {
-                reader.releaseLock();
+                const textChunk = textDecoder.decode(value);
+                displayData(textChunk);
             }
+        } catch (error) {
+            console.error('Read error:', error);
+            updateStatus('Read error: ' + error);
+        } finally {
+            globalReader.releaseLock();
         }
-        if (port) {
-            await port.close();
-            port = null;
-            updateStatus("Disconnected.");
-        }
+        readLoopActive = false;
+        readLoopExitSignalResolver();
     }
 
     function displayData(data) {
@@ -128,26 +130,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     async function disconnect() {
-        if (port) {
-            if (reader) {
-                await reader.cancel();
-                await reader.releaseLock();
+        device_connected = false;
+    
+        if (globalReader) {
+            try {
+                await globalReader.cancel();
+            } catch (error) {
+                console.error('Error canceling the reader:', error);
             }
-            if (writer) {
-                await writer.close();
-                await writer.releaseLock();
-            }
-            await port.close();
-            port = null;
-            device_connected = false;
-            updateStatus("Disconnected.");
-            connectButton.disabled = false;
-            disconnectButton.disabled = true;
         }
+    
+        await readLoopExitSignal;
+    
+        readLoopExitSignal = new Promise(resolve => {
+            readLoopExitSignalResolver = resolve;
+        });
+    
+        try {
+            await port.close();
+            console.log('Port closed.');
+        } catch (error) {
+            console.error('Port close error:', error);
+        }
+    
+        port = null;
+        globalReader = null;
+        updateStatus("Disconnected.");
+        toggleConnectDisconnectUI(false);
     }
-
-    connectButton.addEventListener('click', connect);
-    sendButton.addEventListener('click', send);
-    disconnectButton.addEventListener('click', disconnect);
+    
+    function toggleConnectDisconnectUI(isConnected) {
+        connectButton.style.display = isConnected ? 'none' : 'inline-block';
+        disconnectButton.style.display = isConnected ? 'inline-block' : 'none';
+        connectButton.disabled = isConnected;
+        disconnectButton.disabled = !isConnected;
+    }
+    
+    connectButton.addEventListener('click', () => {
+        connect().catch(console.error);
+    });
+    
+    disconnectButton.addEventListener('click', () => {
+        disconnect().catch(console.error);
+    });
+    sendButton.addEventListener('click', () => {
+        send(inputField.value).catch(error => {
+            console.error('Send error:', error);
+            updateStatus(`Send error: ${error}`);
+        });
+        inputField.value = '';
+    });
     updateStatus("Ready to connect. Please select a baud rate and press 'Connect'.");
 });
