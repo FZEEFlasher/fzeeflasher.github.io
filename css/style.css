@@ -30,8 +30,8 @@
 }
 
 .header button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #d06a00;
+  color: #fff;
 }
 
 button {
@@ -42,7 +42,7 @@ button {
   padding: 3px 20px;
   border-radius: 10px;
   border: 2px solid #FF8200;
-  background: #252525;
+  background: #000;
   box-shadow: 3px 3px #d06a00;
   cursor: pointer;
   margin: 3px 0;
@@ -607,11 +607,16 @@ div.right2 {
   box-sizing: border-box;
 }
 
-.connection-controls-left {
-  display: flex;
-  align-items: center;
+.connection-controls-left label {
+  position: absolute;
+  transform: translateY(-100%); 
+  color: #FFFFFF;
+  font-family: monospace;
+  font-size: 1rem;
+  margin: 0;
 }
 
+.connection-controls-left,
 .connection-controls-right {
   display: flex;
   align-items: center;
@@ -646,63 +651,82 @@ div.right2 {
   margin-right: 10px;
 }
 
-button#butSend {
-  padding: 3px 20px;
-  font-family: monospace;
-  font-size: 1.2rem;
-  color: #FF8200;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: 2px solid #FF8200;
-  background: #252525;
-  box-shadow: 3px 3px #d06a00;
-  cursor: pointer;
+.dropdown-container {
+    margin-bottom: 5px; 
 }
 
-button#butSend:hover {
-  background-color: #fff;
-  color: #000;
-}
-
-#baudRate {
+#baudRate,
+#endOfLine {
   padding: 5px 10px;
   font-family: monospace;
   font-size: 1rem;
   border-radius: 10px;
   border: 2px solid #FF8200;
-  background-color: #252525;
+  background-color: #000;
   color: #FFFFFF;
   box-shadow: 3px 3px #d06a00;
   cursor: pointer;
 }
 
-.baud-rate-label {
-  margin-right: 10px; 
+#baudRate,
+#endOfLine {
+  margin-right: 20px;
+  background-color: transparent;
 }
 
-#baudRate:hover {
-  background-color: #1e1e1e;
+#baudRate:hover,
+#endOfLine:hover {
+  background-color: #d06a00;
 }
 
-#baudRate:focus {
+#baudRate:focus,
+#endOfLine:focus {
   outline: none;
   border-color: #ffa500;
 }
 
-#butConnect {
+#butConnect,
+#butHome,
+#butSend,
+#butDisconnect {
   padding: 3px 20px;
   font-family: monospace;
   font-size: 1.2rem;
-  color: #FF8200;
+  color: #fff;
   text-transform: uppercase;
   border-radius: 10px;
   border: 2px solid #FF8200;
-  background: #252525;
+  background: #000;
   box-shadow: 3px 3px #d06a00;
   cursor: pointer;
 }
 
-#butConnect:hover {
-  background-color: #fff;
-  color: #000;
+#butClear:hover,
+#butSend:hover,
+#butConnect:hover,
+#butHome:hover,
+#butDisconnect:hover {
+  background-color: #d06a00;
+  color: #fff;
+}
+
+#modelSelect:hover,
+#versionSelect:hover,
+#variantSelect:hover {
+  background-color: #d06a00;
+}
+
+#modelSelect:focus,
+#versionSelect:focus,
+#variantSelect:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+#modelSelect optgroup,
+#versionSelect optgroup,
+#variantSelect optgroup {
+  font-weight: bold;
+  color: #FF8200;
+  background-color: #252525;
 }

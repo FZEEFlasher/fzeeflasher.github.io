@@ -100,13 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStatus('The port is not writable or not connected.');
             return;
         }
-
+    
         const writer = port.writable.getWriter();
-
+    
         try {
-            const sendData = typeof data === 'string' ? textEncoder.encode(data + '\r\n') : data;
+            const eolOption = document.getElementById('endOfLine').value;
+            let formattedData = typeof data === 'string' ? data : '';
+            
+            switch (eolOption) {
+                case 'cr':
+                    formattedData += '\r';
+                    break;
+                case 'lf':
+                    formattedData += '\n';
+                    break;
+                case 'crlf':
+                    formattedData += '\r\n';
+                    break;
+            }
+            
+            const sendData = textEncoder.encode(formattedData);
             await writer.write(sendData);
-            updateStatus(`Data sent: ${data}`);
+            updateStatus(`Data sent: ${formattedData}`);
         } catch (error) {
             console.error('Write error:', error);
             updateStatus(`Write error: ${error}`);
@@ -180,5 +195,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         inputField.value = '';
     });
-    updateStatus("Ready to connect. Please select a baud rate and press 'Connect'.");
+    updateStatus("Ready to connect. Please select a baud rate and end of line character set and press 'Connect'.");
 });
