@@ -13,6 +13,7 @@
   z-index: 1000;
   margin: 0;
   background-color: #000;
+  color: #fff;
 }
 
 .header h1 {
@@ -59,6 +60,7 @@ button:active {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  font-family: monospace;
 }
 
 
@@ -87,10 +89,16 @@ body {
   height: 99vh;
   border: 1px solid #FF8200;
   background-color: #000;
+  color: #fff;
 }
 
 p {
   margin: 0;
+}
+
+input, select, button {
+  background-color: #333;
+  color: #fff;
 }
 
 input,
@@ -235,6 +243,14 @@ i .icons {
 .footer button {
   font-size: 14px;
   margin: 0 10px;
+  border-color: #FF8200;
+  background-color: #333;
+  color: #fff;
+}
+
+.footer button:hover {
+  background-color: #fff;
+  color: #333;
 }
 
 .remix {
@@ -247,119 +263,16 @@ i .icons {
 .remix button {
   position: absolute;
   bottom: 11px;
+  border-color: #fff;
+  color: #fff;
+}
+
+.remix button:hover {
+  background-color: #fff;
 }
 
 #templates {
   display: none;
-}
-
-.onoffswitch {
-  display: inline-block;
-  position: relative;
-  width: 50px;
-  user-select: none;    
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  margin-left: 10px;
-}
-
-.onoffswitch-checkbox {
-  display: none;
-}
-
-.onoffswitch-label {
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid #900;
-  border-radius: 15px;
-  font-size: 14px;
-  transition: border 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner {
-  display: block;
-  width: 200%;
-  margin-left: -100%;
-  transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before,
-.onoffswitch-inner:after {
-  display: block;
-  float: left;
-  width: 50%;
-  height: 25px;
-  padding: 0;
-  line-height: 25px;
-  font-size: 14px;
-  color: white;
-  font-family: proxima-nova, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  box-sizing: border-box;
-}
-
-.onoffswitch-inner:before {
-  content: "on";
-  padding-left: 6px;
-  background-color: #8ec641;
-  color: #fff;
-}
-
-.onoffswitch-inner:after {
-  content: "off";
-  padding-right: 6px;
-  background-color: #c64141;
-  color: #fff;
-  text-align: right;
-}
-
-.onoffswitch-switch {
-  display: block;
-  width: 19px;
-  margin: 3px;
-  background: #fff;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 23px;
-  border: 1px solid #900;
-  border-radius: 15px;
-  transition: all 0.3s ease-in 0s;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-  border-color: #71ae1e;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 0px;
-  border-color: #67ac38;
-}
-
-.footer .onoffswitch {
-  margin-right: 20px;
-  top: 7px;
-}
-
-.controls-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-}
-
-.controls-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 #butClear {
@@ -390,6 +303,11 @@ i .icons {
   white-space: nowrap;
 }
 
+.notSupported, .notSupported a {
+  background-color: red;
+  color: white;
+}
+
 .firmware > input {
   width: 0.1px;
   height: 0.1px;
@@ -405,10 +323,30 @@ i .icons {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: #fff;
+}
+
+.firmware:focus,
+.firmware:hover {
+  color: #fff;
 }
 
 .firmware > svg {
   margin-right: 10px;
+}
+
+.firmware:disabled {
+  color: #ccc;
+  border-color: #ccc;
+}
+
+.firmware:disabled:hover {
+  background-color: #fff;
+}
+
+input {
+  background-color: #fff;
+  color: #333;
 }
 
 .debug-function {
@@ -444,6 +382,14 @@ i .icons {
   justify-content: center;
   width: 600px;
   margin: 10px auto;
+  border-color: #FF8200;
+  background-color: #000;
+  color: #fff;
+}
+
+#commands button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 #commands .buttons button {
@@ -452,6 +398,19 @@ i .icons {
   border-width: 2px;
   border-style: solid;
 }
+
+#commands .buttons button:disabled,
+#commands .buttons button:disabled:hover{
+  border-color: #999;
+  background-color: #888;
+  color: #ccc;
+}
+
+#commands .buttons button:hover {
+  background-color: #d06a00;
+  color: #fff;
+}
+
 .justify {
   display: flex;
   justify-content: space-between;
@@ -470,14 +429,6 @@ i .icons {
   font-size: 14px;
   width: calc(100% - 100px);
   z-index: 9999;
-}
-
-.autoscroll-label {
-  margin-top: 15px;
-  width: 10px;
-}
-.darkmode-label {
-  width: 10px;
 }
 
 .sections-container {
@@ -786,8 +737,8 @@ i .icons {
   width: 200px;
   position: fixed;
   z-index: 2;
-  top: 80px;
-  left: 10px;
+  top: 103px;
+  left: 20px;
   bottom: 10px;
   background-color: #000;
   overflow-x: hidden;
