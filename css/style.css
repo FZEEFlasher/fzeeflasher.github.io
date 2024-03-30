@@ -12,7 +12,7 @@
   width: 99vw;
   z-index: 1000;
   margin: 0;
-  background: solid;
+  background-color: #000;
 }
 
 .header h1 {
@@ -70,8 +70,9 @@ body {
   font-style: normal;
   font-weight: 400;
   width: 99vw;
-  height: 98vh;
+  height: 99vh;
   border: 1px solid #FF8200;
+  background-color: #000;
 }
 
 p {
@@ -104,9 +105,14 @@ div.clear {
 }
 
 .main {
+  position: absolute;
+  top: 80px;
+  left: 200px;
+  right: 10px;
+  bottom: 10px;
+  padding: 15px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-top: 80px;
 }
 
 .hidden {
@@ -172,7 +178,7 @@ i .icons {
 
 #log {
   margin: auto;
-  width: 93vw;
+  width: 80vw;
   font-family: pt-mono, monospace;
   font-style: normal;
   font-weight: 400;
@@ -181,10 +187,10 @@ i .icons {
   overflow-x: auto;
   transition: color 0.1s linear;
   padding: 0 50px;
-  border: px solid #000;
+  border: 1px solid #FF8200;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  background-color: #000;
+  background-color: #252525;
   color: #cecece;
 }
 
@@ -233,11 +239,11 @@ i .icons {
   display: none;
 }
 
-/* On/Off Switch Widget */
 .onoffswitch {
   display: inline-block;
   position: relative;
   width: 50px;
+  user-select: none;    
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -328,7 +334,22 @@ i .icons {
   top: 7px;
 }
 
+.controls-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.controls-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #butClear {
+  display: block;
   margin-top: 10px;
 }
 
@@ -436,35 +457,19 @@ i .icons {
   width: calc(100% - 100px);
   z-index: 9999;
 }
-div.right3 {
-  float: left;
-  position: relative;
-  display: flex;
-  align-items: center;
-  left: 0vw;
-}
 
-div.right2 {
-  float: right;
-  position: relative;
-  display: flex;
-  align-items: center;
-  right: 70vw;
-}
-
-.autoscroll-label, .darkmode-label {
+.autoscroll-label {
   margin-top: 15px;
-  width: ;
+  width: 10px;
 }
 .darkmode-label {
-  width: ;
+  width: 10px;
 }
 .clearbutton {
   position: absolute;
   text-align: center;
   margin-top: 22px !important;
-  right: 7vw !important;
-
+  
 }
 
 .sections-container {
@@ -586,10 +591,10 @@ div.right2 {
 
 .terminal {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 95px;
+  left: 200px;
+  right: 10px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   background-color: #000;
@@ -603,21 +608,58 @@ div.right2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 0px 0px;
   box-sizing: border-box;
+  width: 100%;
 }
 
-.connection-controls-left label {
-  position: absolute;
-  transform: translateY(-100%); 
+.connection-controls-side {
+  display: flex;
+  flex-direction: column;
+  margin: 0 15px;
+}
+
+.connection-controls-side .dropdown-container {
+  margin-bottom: 10px;
+}
+
+.connection-controls-side label {
   color: #FFFFFF;
   font-family: monospace;
   font-size: 1rem;
-  margin: 0;
+  margin-bottom: 0px;
 }
 
-.connection-controls-left,
-.connection-controls-right {
+.connection-controls-side .dropdown {
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background-color: #000;
+  color: #FFFFFF;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.connection-controls-side .dropdown:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+.connection-controls-side .dropdown-container::after {
+  position: absolute;
+  right: 15px;
+  top: calc(50% + 15px);
+  pointer-events: none;
+  color: #fff;
+}
+
+.connection-controls-left {
   display: flex;
   align-items: center;
 }
@@ -685,6 +727,7 @@ div.right2 {
   border-color: #ffa500;
 }
 
+#butClear,
 #butConnect,
 #butHome,
 #butSend,
@@ -729,4 +772,56 @@ div.right2 {
   font-weight: bold;
   color: #FF8200;
   background-color: #252525;
+}
+
+.sidebar {
+  width: 200px;
+  position: fixed;
+  z-index: 2;
+  top: 80px;
+  left: 10px;
+  bottom: 10px;
+  background-color: #000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+  display: block;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar-button {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background: #000;
+  box-shadow: 3px 3px #d06a00;
+  cursor: pointer;
+  margin: 10px 0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #d06a00;
+  color: #fff;
+}
+
+.container {
+  margin-top: 95px;
+  margin-right: 10px;
+  margin-left: 210px;
 }

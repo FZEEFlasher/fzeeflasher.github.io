@@ -1,0 +1,74 @@
+name: Generate Changelog
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main 
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Generate changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: 'FZEEFlasher'
+          REPOSITORY: 'fzeeflasher.github.io'
+        run: |
+          import requests
+          import os
+
+          url = f'https://api.github.com/repos/{os.getenv("USERNAME")}/{os.getenv("REPOSITORY")}/commits'
+
+          headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
+
+          response = requests.get(url, headers=headers)
+          commits = response.json()[:10]  # Limit to the latest 10 commits
+
+          commit_entries = "<ul>"
+          for commit in commits:
+              date = commit['commit']['author']['date'][:10]
+              message = commit['commit']['message'].replace('\n', '<br>')
+              commit_url = commit['html_url']
+              commit_entries += f'<li><p><a href="{commit_url}" target="_blank" style="color: orange; text-decoration: none;"><strong>{date}:</strong> <span style="color: white;">{message}</span></a></p></li>\n'
+          commit_entries += "</ul>"
+
+          full_changelog_url = f"https://github.com/{os.getenv('USERNAME')}/{os.getenv('REPOSITORY')}/commits/main"
+          commit_entries += f'<p><a href="{full_changelog_url}" target="_blank" style="color: orange;">View Full Change Log</a></p>'
+
+          with open("changelog.html", "r") as file:
+              html_content = file.read()
+
+          start_marker = "<!-- START COMMITS -->"
+          end_marker = "<!-- END COMMITS -->"
+          start_index = html_content.find(start_marker) + len(start_marker)
+          end_index = html_content.find(end_marker)
+          updated_html = html_content[:start_index] + "\n" + commit_entries + html_content[end_index:]
+
+          with open("changelog.html", "w") as file:
+              file.write(updated_html)
+        shell: python
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add changelog.html
+          git commit -m "Update changelog" -a || echo "No changes to commit"
+          git push

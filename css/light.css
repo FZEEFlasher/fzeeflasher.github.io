@@ -78,3 +78,16 @@ input, button {
 .progress-bar {
   border-color: #333;
 }
+
+.sidebar {
+  background-color: #fff;
+}
+
+.sidebar a,
+.sidebar-button {
+  color: #fff;
+}
+
+.sidebar-button:hover {
+  background-color: #eee;
+}

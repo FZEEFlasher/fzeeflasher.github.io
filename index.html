@@ -42,11 +42,6 @@
           : "https://unpkg.com/esp-web-flasher@5.1.4/dist/web/index.js?module"
       );
     </script>
-    <script>
-       function HowToPage() {
-          window.open('howto.html', '_blank');
-       }
-    </script>
     <script src="js/variables.js" module defer></script>
 	<script src="js/script.js" module defer></script>
   </head>
@@ -54,14 +49,51 @@
     <header class="header">
       <div class="left">
 	    <img src="assets/fzeeflasher_banner.webp"><p class="top-text">
-		<font face="Tahoma, Verdana, Arial" color="white" size="2"><b>Latest Marauder v0.13.9</b></font></p>
 		</div></div>
 		<div class="right">
-        <button onclick="HowToPage()" type="button">HOW-TO</button>
-        <button id="butConnect" type="button">Connect</button>
-        <button id="butSerialTerminal" type="button" onclick="window.location='serial_terminal.html';">Serial Terminal</button>
+      <font face="Tahoma, Verdana, Arial" color="white" size="2"><b>Latest Marauder v0.13.9</b></font></p>
       </div>
     </header>
+    <div class="sidebar">
+      <a class="sidebar-button" href="index.html">Home</a> 
+      <a class="sidebar-button" href="https://github.com/FZEEFlasher/fzeeflasher.github.io/wiki">Wiki</a>
+      <a class="sidebar-button" href="changelog.html">Change Log</a>
+      <a class="sidebar-button" href="serial_terminal.html">Serial Terminal</a>
+      <button id="butConnect" type="button">Connect</button>
+      <button id="butClear" type="button" class="clearbutton">Clear</button>
+      <div class="controls-bottom">
+        <div class="autoscroll-container">
+          <label for="autoscroll" class="autoscroll-label">Autoscroll </label>
+          <div class="onoffswitch">
+            <input
+              type="checkbox"
+              name="autoscroll"
+              class="onoffswitch-checkbox"
+              id="autoscroll"
+            />
+            <label class="onoffswitch-label" for="autoscroll">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </div>
+        <div class="darkmode-container">
+          <label for="darkmode" class="darkmode-label"> Dark Mode </label>
+          <div class="onoffswitch">
+            <input
+              type="checkbox"
+              name="darkmode"
+              class="onoffswitch-checkbox"
+              id="darkmode"
+            />
+            <label class="onoffswitch-label" for="darkmode">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>  
     <main class="main">
        <div class="subheader">
 		</div>
@@ -162,39 +194,6 @@
 	  <center><i><font color="#f89521" face="Verdana, Tahoma" size="1px"> - FzeeFlasher and its affiliated entities disclaim any liability for damages, misuse, or unintended consequences resulting from the use of this firmware tool or the flashing of firmware onto your device.</font></i></center>
     </main>
     <footer class="footer">
-<div class="controls justify">
-  <div class="right3">
-    <label for="autoscroll" class="autoscroll-label">Autoscroll </label>
-    <div class="onoffswitch">
-      <input
-        type="checkbox"
-        name="autoscroll"
-        class="onoffswitch-checkbox"
-        id="autoscroll"
-      />
-      <label class="onoffswitch-label" for="autoscroll">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-      </label>
-    </div>
-  </div>
-  <div class="right2">
-    <label for="darkmode" class="darkmode-label"> Dark Mode </label>
-    <div class="onoffswitch">
-      <input
-        type="checkbox"
-        name="darkmode"
-        class="onoffswitch-checkbox"
-        id="darkmode"
-      />
-      <label class="onoffswitch-label" for="darkmode">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-      </label>
-    </div>
-  </div>
-  <button id="butClear" type="button" class="clearbutton">Clear</button>
-</div>
 <div class="sections-container">
   <div class="developer-section">
     <h3>Support the Developers</h3>

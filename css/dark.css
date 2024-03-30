@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #333;
+  background-color: #000;
   color: #fff;
 }
 
@@ -81,9 +81,25 @@ input {
 }
 
 #commands .buttons button:hover {
-  background-color: #fff;
+  background-color: #d06a00;
+  color: #fff;
 }
 
 .progress-bar {
   border-color: #fff;
 }
+
+.sidebar {
+  background-color: #000;
+}
+
+.sidebar a,
+.sidebar-button {
+  color: #fff;
+}
+
+.sidebar-button:hover {
+  background-color: #d06a00; 
+
+}
+
