@@ -20,6 +20,10 @@
         <a class="sidebar-button" href="changelog.html">Change Log</a>
         <a class="sidebar-button" href="serial_terminal.html">Serial Terminal</a>
         <div class="connection-controls-side">
+            <div class="button-container">
+            <button id="butConnect" type="button">Connect</button>
+            <button id="butDisconnect" type="button" style="display:none;">Disconnect</button>
+            </div>
             <div class="dropdown-container">
                 <label class="baud-rate-label" for="baudRate">Baud Rate:</label>
                 <select id="baudRate" class="dropdown">
@@ -45,8 +49,6 @@
         </select>
         </div>
         </div>
-        <button id="butConnect" type="button">Connect</button>
-        <button id="butDisconnect" type="button" style="display:none;">Disconnect</button>
     </div>  
     <div id="terminalContainer" class="terminal">
         <div id="terminalOutput" class="terminal-output"></div>

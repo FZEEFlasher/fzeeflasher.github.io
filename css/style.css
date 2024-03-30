@@ -54,6 +54,20 @@ button:active {
   transform: translate(3px, 3px);
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+.button-container button {
+  width: calc(100% - 40px);
+  margin: 5px 20px;
+  text-align: center;
+}
+
 .firmware {
   height: 25px;
   font-size: 16px;
@@ -465,12 +479,6 @@ i .icons {
 .darkmode-label {
   width: 10px;
 }
-.clearbutton {
-  position: absolute;
-  text-align: center;
-  margin-top: 22px !important;
-  
-}
 
 .sections-container {
   display: flex;
@@ -591,10 +599,10 @@ i .icons {
 
 .terminal {
   position: absolute;
-  top: 95px;
-  left: 200px;
-  right: 10px;
-  bottom: 20px;
+  top: 103px;
+  left: 216px;
+  right: 27px;
+  bottom: 182px;
   display: flex;
   flex-direction: column;
   background-color: #000;

@@ -137,10 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
             inputField.value = '';
         } else if (event.ctrlKey && event.key === 'c') {
             event.preventDefault();
-            send(new Uint8Array([3]));
+            send('\x03');
         } else if (event.ctrlKey && event.key === 'd') {
             event.preventDefault();
-            send(new Uint8Array([4]));
+            send('\x04');
         }
     });
     
