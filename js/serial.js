@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('butConnect');
     const disconnectButton = document.getElementById('butDisconnect');
+    const clearButton = document.getElementById('butClear');
     const baudRateSelect = document.getElementById('baudRate');
     const terminalContainer = document.getElementById('terminalContainer');
     const sendButton = document.getElementById('butSend');
@@ -49,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             updateStatus('Web Serial API not supported by your browser.');
         }
+    }
+
+    function clearTerminal() {
+        const terminalOutput = document.querySelector('.terminal-output');
+        terminalOutput.textContent = ''; // Clear the terminal output
+        updateStatus("Terminal cleared.");
     }
     
     function getBaudRate() {
@@ -188,6 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     disconnectButton.addEventListener('click', () => {
         disconnect().catch(console.error);
     });
+
+    clearButton.addEventListener('click', clearTerminal);
+
     sendButton.addEventListener('click', () => {
         send(inputField.value).catch(error => {
             console.error('Send error:', error);
