@@ -628,13 +628,21 @@ input {
   background-color: #252525;
   color: #cecece;
   border: 1px solid #FF8200;
-  padding: 10px;
+  padding: 5px;
   overflow-y: auto;
-  overflow-x: auto;
-  margin-bottom: 10px;
-  white-space: pre;
+  overflow-x: hidden;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word; 
+}
+
+.terminal-output pre {
+  overflow-x: hidden;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .terminal-input-row {
