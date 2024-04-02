@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('butConnect');
     const disconnectButton = document.getElementById('butDisconnect');
+    const clearButton = document.getElementById('butClear');
     const baudRateSelect = document.getElementById('baudRate');
     const terminalContainer = document.getElementById('terminalContainer');
     const sendButton = document.getElementById('butSend');
@@ -21,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function updateStatus(message) {
         statusDisplay.textContent = message; 
+    }
+
+    const notSupported = document.getElementById("notSupported");
+    if ("serial" in navigator) {
+        notSupported.classList.add("hidden"); 
+    } else {
+        notSupported.classList.remove("hidden");
     }
 
     async function connect() {
@@ -50,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStatus('Web Serial API not supported by your browser.');
         }
     }
+
+    function clearTerminal() {
+        const terminalOutput = document.querySelector('.terminal-output');
+        terminalOutput.textContent = '';
+        updateStatus("Terminal cleared.");
+    }
     
     function getBaudRate() {
         let baudRate = document.getElementById('baudRate').value;
@@ -58,6 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return parseInt(baudRate, 10) || 9600;
     }
+
+    baudRateSelect.addEventListener('change', function() {
+        const customBaudRateDiv = document.getElementById('customBaudRateDiv');
+        if (this.value === 'custom') {
+            // Show the custom baud rate input
+            customBaudRateDiv.style.display = '';
+        } else {
+            // Hide the custom baud rate input
+            customBaudRateDiv.style.display = 'none';
+        }
+    });
 
     async function readLoop() {
         readLoopActive = true;
@@ -82,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayData(data) {
-        const filteredData = data.replace(/\u0007/g, '');
+        const filterRegex = /[\u0007\x1b]/g;
+        const filteredData = data.replace(filterRegex, '');
+
     
         let outputContainer = document.querySelector('.terminal-output');
         let pre = outputContainer.querySelector('pre');
@@ -137,10 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
             inputField.value = '';
         } else if (event.ctrlKey && event.key === 'c') {
             event.preventDefault();
-            send(new Uint8Array([3]));
+            send('\x03');
         } else if (event.ctrlKey && event.key === 'd') {
             event.preventDefault();
-            send(new Uint8Array([4]));
+            send('\x04');
         }
     });
     
@@ -188,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
     disconnectButton.addEventListener('click', () => {
         disconnect().catch(console.error);
     });
+
+    clearButton.addEventListener('click', clearTerminal);
+
     sendButton.addEventListener('click', () => {
         send(inputField.value).catch(error => {
             console.error('Send error:', error);

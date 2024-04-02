@@ -12,10 +12,7 @@ const butConnect = document.getElementById("butConnect");
 const butClear = document.getElementById("butClear");
 const butErase = document.getElementById("butErase");
 const butProgram = document.getElementById("butProgram");
-const autoscroll = document.getElementById("autoscroll");
-const darkSS = document.getElementById("dark");
 const lightSS = document.getElementById("light");
-const darkMode = document.getElementById("darkmode");
 const modelSelect = document.getElementById("modelSelect");
 const versionSelect = document.getElementById("versionSelect");
 const variantSelect = document.getElementById("variantSelect");
@@ -38,16 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
     butClear.addEventListener("click", clickClear);
     butErase.addEventListener("click", clickErase);
     butProgram.addEventListener("click", clickProgram);
-    autoscroll.addEventListener("click", clickAutoscroll);
-    darkMode.addEventListener("change", clickDarkMode);
     butClear.addEventListener("click", clickClear);
     window.addEventListener("error", function (event) {
         console.log("Got an uncaught error: ", event.error);
     });
+
+    const notSupported = document.getElementById("notSupported");
     if ("serial" in navigator) {
-        const notSupported = document.getElementById("notSupported");
-        notSupported.classList.add("hidden");
+        notSupported.classList.add("hidden"); 
+    } else {
+        notSupported.classList.remove("hidden");
     }
+
     modelSelect.addEventListener("change", () => {
         const selectedModel = modelSelect.value;
         // Handle model change if needed
@@ -83,8 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     variantSelect.addEventListener('change', checkDropdowns);
 
     checkDropdowns();
-    loadAllSettings();
-    updateTheme();
     logMsg("ESP Web Flasher loaded.");
 });
 
@@ -96,9 +93,9 @@ function logMsg(text) {
         log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
     }
 
-    if (autoscroll.checked) {
-        log.scrollTop = log.scrollHeight;
-    }
+    
+    log.scrollTop = log.scrollHeight;
+    
 }
 
 
@@ -110,9 +107,8 @@ function annMsg(text) {
         log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
     }
 
-    if (autoscroll.checked) {
-        log.scrollTop = log.scrollHeight;
-    }
+    log.scrollTop = log.scrollHeight;
+    
 }
 function compMsg(text) {
     log.innerHTML += `<font color='#2ED832'>` + text + `<br></font>`;
@@ -122,9 +118,8 @@ function compMsg(text) {
         log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
     }
 
-    if (autoscroll.checked) {
-        log.scrollTop = log.scrollHeight;
-    }
+    log.scrollTop = log.scrollHeight;
+    
 }
 function initMsg(text) {
     log.innerHTML += `<font color='#F72408'>` + text + `<br></font>`;
@@ -134,9 +129,8 @@ function initMsg(text) {
         log.innerHTML = logLines.splice(-maxLogLength).join("<br>\n");
     }
 
-    if (autoscroll.checked) {
         log.scrollTop = log.scrollHeight;
-    }
+
 }
 
 function debugMsg(...args) {
@@ -194,14 +188,6 @@ function errorMsg(text) {
     console.log(text);
 }
 
-function updateTheme() {
-    const selectedStyleSheet = darkMode.checked ? darkSS : lightSS;
-    document.querySelectorAll("link[rel=stylesheet].alternate").forEach((styleSheet) => {
-        enableStyleSheet(styleSheet, styleSheet === selectedStyleSheet);
-    });
-    saveSetting("darkmode", darkMode.checked);
-}
-
 function enableStyleSheet(node, enabled) {
     node.disabled = !enabled;
 }
@@ -240,7 +226,7 @@ async function clickConnect() {
     try {
         await esploader.initialize();
 
-        logMsg("Connected to " + esploader.chipName);
+        logMsg("Connected to " + esploader.chipName + " @ " + baudRates + "bps");
         logMsg("MAC Address: " + formatMacAddr(esploader.macAddr()));
 
         espStub = await esploader.runStub();
@@ -266,14 +252,6 @@ async function changeBaudRate() {
     }
 }
 
-async function clickAutoscroll() {
-    saveSetting("autoscroll", autoscroll.checked);
-}
-
-async function clickDarkMode() {
-    updateTheme();
-    saveSetting("darkmode", darkMode.checked);
-}
 
 function createProgressBarDialog() {
     const styleSheet = document.createElement("style");
@@ -548,11 +526,6 @@ function toggleUIConnected(connected) {
         toggleUIToolbar(false);
     }
     butConnect.textContent = lbl;
-}
-
-function loadAllSettings() {
-    autoscroll.checked = loadSetting("autoscroll", true);
-    darkMode.checked = loadSetting("darkmode", true);
 }
 
 function loadSetting(setting, defaultValue) {
