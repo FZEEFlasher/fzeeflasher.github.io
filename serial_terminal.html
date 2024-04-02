@@ -28,6 +28,7 @@
             <div class="dropdown-container">
                 <label class="baud-rate-label" for="baudRate">Baud Rate:</label>
                 <select id="baudRate" class="dropdown">
+                <option value="custom">Custom</option>
                 <option value="2400">2400</option>
                 <option value="4800">4800</option>
                 <option value="9600">9600</option>
@@ -39,6 +40,10 @@
                 <option value="460800">460800</option>
                 <option value="921600">921600</option>
             </select>
+            <div class="custom-baud-rate-container" id="customBaudRateDiv" style="display: none;">
+                <label for="baudRateCustom">Enter Custom Baud Rate:</label>
+                <input type="number" id="baudRateCustom">
+            </div>
         </div>
         <div class="dropdown-container">
             <label for="endOfLine">End of Line Characters:</label>
@@ -52,6 +57,10 @@
         </div>
     </div>  
     <div id="terminalContainer" class="terminal">
+        <div id="notSupported" class="notSupported">
+            Sorry, <b> Web Serial </b> is not supported in this browser, make sure
+            your browser supports this and is enabled, or use a browser that supports it.
+            </div>
         <div id="terminalOutput" class="terminal-output"></div>
         <pre></pre>
         <div class="terminal-input-row">

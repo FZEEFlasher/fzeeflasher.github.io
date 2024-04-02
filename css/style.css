@@ -306,6 +306,12 @@ i .icons {
 .notSupported, .notSupported a {
   background-color: red;
   color: white;
+  width: 80vw;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  transform: translateY(-50%);
 }
 
 .firmware > input {
@@ -791,4 +797,46 @@ input {
   margin-top: 95px;
   margin-right: 10px;
   margin-left: 210px;
+}
+
+.custom-baud-rate-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.custom-baud-rate-container label {
+  color: #FFFFFF;
+  font-family: monospace;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.custom-baud-rate-container input {
+  padding: 2px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #FF8200;
+  background-color: #000;
+  color: #FFFFFF;
+  box-shadow: 3px 3px #d06a00;
+  cursor: text;
+}
+
+.custom-baud-rate-container input:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+.custom-baud-rate-container input::-webkit-outer-spin-button,
+.custom-baud-rate-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-baud-rate-container input[type=number] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
 }

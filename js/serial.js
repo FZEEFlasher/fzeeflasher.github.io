@@ -24,6 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDisplay.textContent = message; 
     }
 
+    const notSupported = document.getElementById("notSupported");
+    if ("serial" in navigator) {
+        notSupported.classList.add("hidden"); 
+    } else {
+        notSupported.classList.remove("hidden");
+    }
+
     async function connect() {
         if ('serial' in navigator) {
             updateStatus("Serial is supported by navigator.");
@@ -54,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearTerminal() {
         const terminalOutput = document.querySelector('.terminal-output');
-        terminalOutput.textContent = ''; // Clear the terminal output
+        terminalOutput.textContent = '';
         updateStatus("Terminal cleared.");
     }
     
@@ -65,6 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return parseInt(baudRate, 10) || 9600;
     }
+
+    baudRateSelect.addEventListener('change', function() {
+        const customBaudRateDiv = document.getElementById('customBaudRateDiv');
+        if (this.value === 'custom') {
+            // Show the custom baud rate input
+            customBaudRateDiv.style.display = '';
+        } else {
+            // Hide the custom baud rate input
+            customBaudRateDiv.style.display = 'none';
+        }
+    });
 
     async function readLoop() {
         readLoopActive = true;
@@ -89,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayData(data) {
-        const filteredData = data.replace(/\u0007/g, '');
+        const filterRegex = /[\u0007\x1b]/g;
+        const filteredData = data.replace(filterRegex, '');
+
     
         let outputContainer = document.querySelector('.terminal-output');
         let pre = outputContainer.querySelector('pre');

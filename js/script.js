@@ -39,10 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("error", function (event) {
         console.log("Got an uncaught error: ", event.error);
     });
+
+    const notSupported = document.getElementById("notSupported");
     if ("serial" in navigator) {
-        const notSupported = document.getElementById("notSupported");
-        notSupported.classList.add("hidden");
+        notSupported.classList.add("hidden"); 
+    } else {
+        notSupported.classList.remove("hidden");
     }
+
     modelSelect.addEventListener("change", () => {
         const selectedModel = modelSelect.value;
         // Handle model change if needed
@@ -78,8 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     variantSelect.addEventListener('change', checkDropdowns);
 
     checkDropdowns();
-    loadAllSettings();
-    updateTheme();
     logMsg("ESP Web Flasher loaded.");
 });
 
@@ -224,7 +226,7 @@ async function clickConnect() {
     try {
         await esploader.initialize();
 
-        logMsg("Connected to " + esploader.chipName);
+        logMsg("Connected to " + esploader.chipName + " @ " + baudRates + "bps");
         logMsg("MAC Address: " + formatMacAddr(esploader.macAddr()));
 
         espStub = await esploader.runStub();
