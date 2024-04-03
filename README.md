@@ -1,4 +1,11 @@
 # Flipper Zero ESP WebFlasher
+![TypeScript](https://img.shields.io/badge/TypeScript-41.1%25-blue.svg?style=flat-square&logo=typescript)
+![JavaScript](https://img.shields.io/badge/JavaScript-30.6%25-yellow.svg?style=flat-square&logo=javascript)
+![HTML](https://img.shields.io/badge/HTML-13.7%25-orange.svg?style=flat-square&logo=html5)
+![CSS](https://img.shields.io/badge/CSS-11.3%25-brightgreen.svg?style=flat-square&logo=css3&logoColor=blue)
+![Shell](https://img.shields.io/badge/Shell-2.0%25-lightgrey.svg?style=flat-square&logo=gnu-bash)
+![Python](https://img.shields.io/badge/Python-1.3%25-blue.svg?style=flat-square&logo=python)
+
 ## Forked off of Adafruits ESP WebFlasher
 
 Statuses:
@@ -14,5 +21,10 @@ This project started as a fork of [Adafruit WebSerial ESPTool](https://github.co
 
 In March 2022 [Nabu Casa](https://www.nabucasa.com) took over maintenance from Adafruit and this fork became the main code base.
 
+## Current Maintainers
 
-Maintained by InfoSecREDD, and Zardoz, random fixes from Emilia & the community!
+- [InfoSecREDD](https://github.com/InfoSecREDD)
+- [dag](https://github.com/dagnazty)
+- [Zardoz](https://github.com/Zardoz66)
+
+Special thanks to Emilia and numerous community contributors for their invaluable insights and fixes.
