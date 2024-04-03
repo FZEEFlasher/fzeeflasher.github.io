@@ -241,19 +241,6 @@ i .icons {
   line-height: 45px;
 }
 
-.footer button {
-  font-size: 14px;
-  margin: 0 10px;
-  border-color: #FF8200;
-  background-color: #333;
-  color: #fff;
-}
-
-.footer button:hover {
-  background-color: #fff;
-  color: #333;
-}
-
 .remix {
   display: flex;
   justify-content: center;
@@ -805,7 +792,7 @@ input {
   display: flex;
   flex-direction: column;
   border: 1px solid #FF8200;
-  background-color: #252525;
+  background: #252525;
   -ms-overflow-style: none;
   scrollbar-width: none;
   box-sizing: border-box;

@@ -44,7 +44,7 @@ jobs:
           headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
 
           response = requests.get(url, headers=headers)
-          commits = response.json()[:10]  # Limit to the latest 10 commits
+          commits = response.json()[:5]  # Limit to the latest 5 commits
 
           commit_entries = "<ul>"
           for commit in commits:
