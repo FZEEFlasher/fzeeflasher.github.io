@@ -25,6 +25,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      - name: Update README with language percentages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python script/update_readme.py
+
       - name: Generate changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,6 +74,6 @@ jobs:
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-          git add changelog.html
-          git commit -m "Update changelog" -a || echo "No changes to commit"
+          git add README.md changelog.html
+          git commit -m "Update README and changelog" -a || echo "No changes to commit"
           git push
