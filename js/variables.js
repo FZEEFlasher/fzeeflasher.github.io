@@ -3,14 +3,14 @@ const Mpreviouss2Files = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/SSTATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_flipper.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_flipper.bin',
 };
 // Latest Marauder for ESP32-S2
 const Mlatests2Files = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_flipper.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_flipper.bin',
 };
 // Previous BlackMagic for ESP32-S2
 const Bpreviouss2Files = {
@@ -37,14 +37,14 @@ const Mpreviouss2SDFiles = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_flipper.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_flipper.bin',
 };
 // Latest Marauder for ESP32-S2-SDcard
 const Mlatests2SDFiles = {
     'bootloader': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPDEV/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPDEV/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_flipper.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_flipper.bin',
 };
 // Previous BlackMagic for ESP32-S2-SDcard
 const Bpreviouss2SDFiles = {
@@ -69,14 +69,14 @@ const MpreviouswroomFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_old_hardware.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_old_hardware.bin',
 };
 // Latest Marauder for ESP32-WROOM
 const MlatestwroomFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_old_hardware.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_old_hardware.bin',
 };
 
 
@@ -86,14 +86,14 @@ const MV6previousFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_v6.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_v6.bin',
 };
 // Latest Marauder for V6 Board
 const MV6latestFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_v6.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_v6.bin',
 };
 
 
@@ -104,14 +104,14 @@ const MV6_1previousFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_v6_1.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_v6_1.bin',
 };
 // Latest Marauder for V6.1 Board
 const MV6_1latestFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_v6_1.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_v6_1.bin',
 };
 
 
@@ -122,14 +122,14 @@ const MKitpreviousFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_kit.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_kit.bin',
 };
 // Latest Marauder for Kit Package
 const MKitlatestFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v0_13_10_20240425_kit.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_0_0_20240626_kit.bin',
 };
 
 
@@ -156,7 +156,7 @@ const MS3previousFiles = {
     'bootloader': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/FLIPMULTI/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/FLIPMULTI/boot_app0.bin',
-    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_9_20240227_multiboardS3.bin',
+    'firmware': 'resources/PREVIOUS/esp32_marauder_v0_13_10_20240425_multiboardS3.bin',
 };
 // Latest Marauder for ESP32-S3
 const MS3latestFiles = {
