@@ -167,13 +167,13 @@ jobs:
           
           update "MS3previousFiles" "multiboardS3.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "MS3latestFiles" "multiboardS3.bin" "CURRENT" "$JS_FOLDER/variables.js"
-          update "MV6MinipreviousFiles" "mini.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
-          update "MV6MinilatestFiles" "mini.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MV6MinipreviousFiles" "_mini.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MV6MinilatestFiles" "_mini.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "MD1MinipreviousFiles" "lddb.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
-          update "MD1MinilatestFiles" "lddb.bin" "CURRENT" "$JS_FOLDER/variables.js"
-          update "MDevPropreviousFiles" "dev_board_pro.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
-          update "MDevProlatestFiles" "dev_board_pro.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MD1MinipreviousFiles" "_lddb.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MD1MinilatestFiles" "_lddb.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MDevPropreviousFiles" "_dev_board_pro.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MDevProlatestFiles" "_dev_board_pro.bin" "CURRENT" "$JS_FOLDER/variables.js"
         fi
 
     - name: Update index.html to Correct firmware
