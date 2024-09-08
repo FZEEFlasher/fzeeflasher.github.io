@@ -385,8 +385,8 @@ async function clickProgram() {
 			: (selectedVariant === "Marauder" ? MV6MinipreviousFiles : "NULL");
 	} else if (selectedModel === "V6_1Board") {
 		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MV6_1BoardlatestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MV6_1BoardpreviousFiles : "NULL");
+			(selectedVariant === "Marauder" ? MV6_1latestFiles : "NULL") 
+			: (selectedVariant === "Marauder" ? MV6_1previousFiles : "NULL");
 	} else if (selectedModel === "KitPackage") {
 		selectedFiles = selectedVersion === "latest" ? 
 			(selectedVariant === "Marauder" ? MKitlatestFiles : "NULL") 
