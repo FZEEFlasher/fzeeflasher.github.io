@@ -27,4 +27,4 @@ In March 2022 [Nabu Casa](https://www.nabucasa.com) took over maintenance from A
 - [dag](https://github.com/dagnazty)
 - [Zardoz](https://github.com/Zardoz66)
 
-Special thanks to Emilia and numerous community contributors for their invaluable insights and fixes.
+Special thanks to jbohack and numerous community contributors for their invaluable insights and fixes.
