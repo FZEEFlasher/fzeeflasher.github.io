@@ -23,8 +23,6 @@ In March 2022 [Nabu Casa](https://www.nabucasa.com) took over maintenance from A
 
 ## Current Maintainers
 
-- [InfoSecREDD](https://github.com/InfoSecREDD)
-- [dag](https://github.com/dagnazty)
 - [Zardoz](https://github.com/Zardoz66)
 
 Special thanks to jbohack and numerous community contributors for their invaluable insights and fixes.
