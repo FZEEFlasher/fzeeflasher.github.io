@@ -154,6 +154,9 @@ jobs:
           update "Mlatests2Files" "flipper.bin" "CURRENT" "$JS_FOLDER/variables.js"
           update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "$JS_FOLDER/variables.js"
+
+          update "MprevioussCYD2432S028Files" "_cyd_2432S028.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MlatestsCYD2432S028Files" "_cyd_2432S028.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
           update "MpreviouswroomFiles" "old_hardware.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "MlatestwroomFiles" "old_hardware.bin" "CURRENT" "$JS_FOLDER/variables.js"

@@ -347,51 +347,85 @@ async function clickProgram() {
 
     let selectedFiles;
 
-	if (selectedModel === "S2") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? Mlatests2Files : 
-				(selectedVariant === "BlackMagic" ? Blatests2Files : "NULL")) 
-			: (selectedVariant === "Marauder" ? Mpreviouss2Files : 
-				(selectedVariant === "BlackMagic" ? Bpreviouss2Files : "NULL"));
-	} else if (selectedModel === "S2SD") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? Mlatests2SDFiles : 
-				(selectedVariant === "BlackMagic" ? Blatests2SDFiles : "NULL")) 
-			: (selectedVariant === "Marauder" ? Mpreviouss2SDFiles : 
-				(selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : "NULL"));
-	} else if (selectedModel === "WROOM") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MlatestwroomFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MpreviouswroomFiles : "NULL");
-	} else if (selectedModel === "S3") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MS3latestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MS3previousFiles : "NULL");
-	} else if (selectedModel === "DevPro") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MDevProlatestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MDevPropreviousFiles : "NULL");
-	} else if (selectedModel === "D1Mini") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MD1MinilatestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MD1MinipreviousFiles : "NULL");
-	} else if (selectedModel === "V6Board") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MV6latestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MV6previousFiles : "NULL");
-	} else if (selectedModel === "V6Mini") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MV6MinilatestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MV6MinipreviousFiles : "NULL");
-	} else if (selectedModel === "V6_1Board") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MV6_1latestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MV6_1previousFiles : "NULL");
-	} else if (selectedModel === "KitPackage") {
-		selectedFiles = selectedVersion === "latest" ? 
-			(selectedVariant === "Marauder" ? MKitlatestFiles : "NULL") 
-			: (selectedVariant === "Marauder" ? MKitpreviousFiles : "NULL");
-	}
+    switch (selectedModel) {
+    case "S2":
+        if (selectedVersion === "latest") {
+            selectedFiles = selectedVariant === "Marauder" ? Mlatests2Files :
+                            selectedVariant === "BlackMagic" ? Blatests2Files : "NULL";
+        } else {
+            selectedFiles = selectedVariant === "Marauder" ? Mpreviouss2Files :
+                            selectedVariant === "BlackMagic" ? Bpreviouss2Files : "NULL";
+        }
+        break;
+
+    case "S2SD":
+        if (selectedVersion === "latest") {
+            selectedFiles = selectedVariant === "Marauder" ? Mlatests2SDFiles :
+                            selectedVariant === "BlackMagic" ? Blatests2SDFiles : "NULL";
+        } else {
+            selectedFiles = selectedVariant === "Marauder" ? Mpreviouss2SDFiles :
+                            selectedVariant === "BlackMagic" ? Bpreviouss2SDFiles : "NULL";
+        }
+        break;
+
+    case "WROOM":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MlatestwroomFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MpreviouswroomFiles : "NULL");
+        break;
+
+    case "S3":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MS3latestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MS3previousFiles : "NULL");
+        break;
+
+    case "DevPro":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MDevProlatestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MDevPropreviousFiles : "NULL");
+        break;
+
+    case "D1Mini":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MD1MinilatestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MD1MinipreviousFiles : "NULL");
+        break;
+
+    case "V6Board":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MV6latestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MV6previousFiles : "NULL");
+        break;
+
+    case "CYD28":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MlatestsCYD2432S028Files : "NULL") :
+            (selectedVariant === "Marauder" ? MprevioussCYD2432S028Files : "NULL");
+    break;
+
+    case "V6Mini":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MV6MinilatestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MV6MinipreviousFiles : "NULL");
+        break;
+
+    case "V6_1Board":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MV6_1latestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MV6_1previousFiles : "NULL");
+        break;
+
+    case "KitPackage":
+        selectedFiles = selectedVersion === "latest" ?
+            (selectedVariant === "Marauder" ? MKitlatestFiles : "NULL") :
+            (selectedVariant === "Marauder" ? MKitpreviousFiles : "NULL");
+        break;
+
+    default:
+        selectedFiles = "NULL";
+        break;
+    }
 
     function checkDropdowns() {
         const isAnyDropdownNull = [selectedModel, selectedVersion, selectedVariant].includes("NULL");
