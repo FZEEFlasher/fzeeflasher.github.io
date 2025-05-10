@@ -1,10 +1,10 @@
 # Flipper Zero ESP WebFlasher
-![TypeScript](https://img.shields.io/badge/TypeScript-41.0%25-blue.svg?style=flat-square&logo=typescript)
-![JavaScript](https://img.shields.io/badge/JavaScript-30.5%25-yellow.svg?style=flat-square&logo=javascript)
+![TypeScript](https://img.shields.io/badge/TypeScript-40.4%25-blue.svg?style=flat-square&logo=typescript)
+![JavaScript](https://img.shields.io/badge/JavaScript-31.3%25-yellow.svg?style=flat-square&logo=javascript)
 ![HTML](https://img.shields.io/badge/HTML-13.7%25-orange.svg?style=flat-square&logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-11.3%25-brightgreen.svg?style=flat-square&logo=css3&logoColor=blue)
 ![Shell](https://img.shields.io/badge/Shell-2.0%25-lightgrey.svg?style=flat-square&logo=gnu-bash)
-![Python](https://img.shields.io/badge/Python-3.2%25-blue.svg?style=flat-square&logo=python)
+![Python](https://img.shields.io/badge/Python-3.1%25-blue.svg?style=flat-square&logo=python)
 
 ## Forked off of Adafruits ESP WebFlasher
 
