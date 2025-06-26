@@ -88,7 +88,7 @@ const MlatestwroomFiles = {
     'bootloader': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.bootloader.bin',
     'partitions': 'resources/STATIC/M/ESPWROOM/esp32_marauder.ino.partitions.bin',
     'boot_app0': 'resources/STATIC/M/ESPWROOM/boot_app0.bin',
-    'firmware': 'resources/CURRENT/esp32_marauder_v1_7_1_20250625_og.bin',
+    'firmware': 'resources/CURRENT/esp32_marauder_v1_7_1_20250625_old_hardware.bin',
 };
 
  
