@@ -158,8 +158,8 @@ jobs:
           update "MprevioussCYD2432S028Files" "_cyd_2432S028.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "MlatestsCYD2432S028Files" "_cyd_2432S028.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
-          update "MpreviouswroomFiles" "old_hardware.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
-          update "MlatestwroomFiles" "old_hardware.bin" "CURRENT" "$JS_FOLDER/variables.js"
+          update "MpreviouswroomFiles" "og.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
+          update "MlatestwroomFiles" "og.bin" "CURRENT" "$JS_FOLDER/variables.js"
           update "MV6previousFiles" "v6.bin" "PREVIOUS" "$JS_FOLDER/variables.js"
           update "MV6latestFiles" "v6.bin" "CURRENT" "$JS_FOLDER/variables.js"
           
