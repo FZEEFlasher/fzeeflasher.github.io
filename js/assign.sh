@@ -41,6 +41,9 @@ update "Mlatests2Files" "flipper.bin" "CURRENT" "variables.js"
 update "Mpreviouss2SDFiles" "flipper.bin" "PREVIOUS" "variables.js"
 update "Mlatests2SDFiles" "flipper.bin" "CURRENT" "variables.js"
 
+update "MprevioussCYD2432S028Files" "cyd_2432S028.bin" "PREVIOUS" "variables.js"
+update "MlatestsCYD2432S028Files" "cyd_2432S028.bin" "CURRENT" "variables.js"
+
 update "MpreviouswroomFiles" "old_hardware.bin" "PREVIOUS" "variables.js"
 update "MlatestwroomFiles" "old_hardware.bin" "CURRENT" "variables.js"
 update "MV6previousFiles" "v6.bin" "PREVIOUS" "variables.js"
