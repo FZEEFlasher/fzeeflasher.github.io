@@ -22,7 +22,7 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "axios": "^1.13.1",
+    "axios": "^1.13.2",
     "pako": "^2.0.3",
     "tslib": "^2.2.0"
   }
