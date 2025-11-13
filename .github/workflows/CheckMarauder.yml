@@ -1,4 +1,4 @@
-name: Update Marauder Firmware Service
+fzmname: Update Marauder Firmware Service
 
 on:
   schedule:
