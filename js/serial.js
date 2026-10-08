@@ -134,17 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const eolOption = document.getElementById('endOfLine').value;
             let formattedData = typeof data === 'string' ? data : '';
             
-            switch (eolOption) {
-                case 'cr':
-                    formattedData += '\r';
-                    break;
-                case 'lf':
-                    formattedData += '\n';
-                    break;
-                case 'crlf':
-                    formattedData += '\r\n';
-                    break;
-            }
+const eolMap = {
+    cr: '\r',
+    lf: '\n',
+    crlf: '\r\n',
+};
+
+formattedData += eolMap[eolOption] ?? '';
             
             const sendData = textEncoder.encode(formattedData);
             await writer.write(sendData);
